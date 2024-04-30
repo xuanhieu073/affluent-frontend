@@ -1,0 +1,20 @@
+@layer components {
+  .affluent-background {
+    @apply absolute inset-0 -z-50 overflow-hidden;
+    &_top-left {
+      @apply absolute top-0 mobile:-top-[100px] left-0 opacity-30 min-h-[161px] mobile:min-h-[700px] min-w-[1px] w-[200px] mobile:w-auto;
+    }
+    &_middle-right {
+      @apply absolute top-[1985px] right-0 opacity-30 w-[250px] mobile:w-auto;
+    }
+    &_bottom-left {
+      @apply absolute top-[3886px] left-0 opacity-30 w-[300px] mobile:w-auto;
+    }
+    &_dotted-grid-top {
+      @apply absolute top-[1256px] right-[50px] opacity-25 w-[158px] hidden mobile:block;
+    }
+    &_dotted-grid-middle {
+      @apply absolute top-[3049px] left-[106px] opacity-25 hidden mobile:block;
+    }
+  }
+}

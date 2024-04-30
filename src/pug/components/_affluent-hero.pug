@@ -1,0 +1,73 @@
+mixin affluent-hero-dot(index)
+  .affluent-hero_pagination-item(@click=`goToSlide(${index})` :class=`activeIndex === ${index} && 'dot-active'`)
+    .affluent-hero_pagination-dot
+
+mixin affluent-hero-pagination
+  .affluent-hero_pagination
+    +affluent-hero-dot(0)
+    +affluent-hero-dot(1)
+    +affluent-hero-dot(2)
+    +affluent-hero-dot(3)
+
+mixin affluent-hero
+  .affluent-hero
+    .swiper(x-data="affluent_hero" data-autoplay-ms="1000")
+      .swiper-wrapper
+        .swiper-slide
+          .affluent-hero_bg
+            img.for-desktop(lazy-src=path + "assets/images/affluent/affluent-hero.png", alt="affluent-hero")
+            img.for-mobile(lazy-src=path + "assets/images/affluent/affluent-hero-small.png", alt="affluent-hero")
+          .affluent-hero_content 
+            .affluent-hero_title 
+              p Here’s to a thoughtfully
+                b crafted future 1
+            .affluent-hero_desc 
+              p Create a legacy for your loved ones and embrace the 
+                br 
+                | freedom to pursue your passion without compromise.
+            +affluent-hero-pagination
+        .swiper-slide
+          .affluent-hero_bg
+            img.for-desktop(lazy-src=path + "assets/images/affluent/affluent-hero.png", alt="affluent-hero")
+            img.for-mobile(lazy-src=path + "assets/images/affluent/affluent-hero-small.png", alt="affluent-hero")
+          .affluent-hero_content 
+            .affluent-hero_title 
+              p Here’s to a thoughtfully
+                br 
+                b crafted future 2
+            .affluent-hero_desc 
+              p Create a legacy for your loved ones and embrace the 
+                br 
+                | freedom to pursue your passion without compromise.
+            +affluent-hero-pagination
+        .swiper-slide
+          .affluent-hero_bg
+            img.for-desktop(lazy-src=path + "assets/images/affluent/affluent-hero.png", alt="affluent-hero")
+            img.for-mobile(lazy-src=path + "assets/images/affluent/affluent-hero-small.png", alt="affluent-hero")
+          .affluent-hero_content 
+            .affluent-hero_title 
+              p Here’s to a thoughtfully
+                br 
+                b crafted future 3
+            .affluent-hero_desc 
+              p Create a legacy for your loved ones and embrace the 
+                br 
+                | freedom to pursue your passion without compromise.
+            +affluent-hero-pagination
+        .swiper-slide
+          .affluent-hero_bg
+            img.for-desktop(lazy-src=path + "assets/images/affluent/affluent-hero.png", alt="affluent-hero")
+            img.for-mobile(lazy-src=path + "assets/images/affluent/affluent-hero-small.png", alt="affluent-hero")
+          .affluent-hero_content 
+            .affluent-hero_title 
+              p Here’s to a thoughtfully
+                br 
+                b crafted future 4
+            .affluent-hero_desc 
+              p Create a legacy for your loved ones and embrace the 
+                br 
+                | freedom to pursue your passion without compromise.
+            +affluent-hero-pagination
+
+mixin affluent-spacer(mobile, desktop)
+  .margin-option(style=`--mobile-mb: ${mobile}px; --desktop-mb: ${desktop}px`)

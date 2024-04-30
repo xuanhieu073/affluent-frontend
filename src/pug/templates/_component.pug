@@ -1,0 +1,73 @@
+extends _layout
+
+block append variables
+  - title = 'Component - Template'
+  - path = '../../../'
+
+block append styles
+  link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/vs2015.min.css")
+block append  scripts-lib
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.3/beautify-html.js")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/languages/htmlbars.min.js")
+
+block content
+  mixin component(name)
+    .style-guide     
+      h1.title!=name
+        br
+        .block
+          h2.sub-title [Preview]
+            .preview-frame.relative
+              block
+        .block
+          h2.sub-title [Code]
+            .code-frame.text-note 
+              #content-frame
+                block
+
+  style.
+    .style-guide .title {
+      font-size: 1.2rem;
+    }
+    .style-guide .sub-title {
+      font-size: 1rem;
+    }
+    .style-guide .code-frame {
+      min-height: 700px;
+    }  
+    .style-guide pre {
+      margin: 0;
+    }
+
+block append scripts
+  script.
+    document.querySelectorAll('.code-frame #content-frame').forEach(function (element) {
+      var pre = document.createElement('pre');
+      var code = document.createElement('code');
+      var preCode = "";
+      var children = element.children;
+      console.log(children);
+      for(var i = 0; i < children.length; i ++) {
+        preCode+= children[i].outerHTML.trim();
+      }
+ 
+        //- .replace(/"\{/g, "'{")
+        //- .replace(/"\[/g, "'[")
+        //- .replace(/\}"/g, "}'")
+        //- .replace(/\]"/g, "]'")
+      var html = html_beautify(preCode, {
+        indent_size: 2,
+        indent_char: ' ',
+        break_chained_methods: true
+      })
+      code.innerText = html;
+
+      code.classList.add('html');
+      pre.appendChild(code);
+      element.insertAdjacentElement('afterend', pre);
+      element.parentElement.removeChild(element);
+    });
+    hljs.highlightAll();
+          
+

@@ -1,0 +1,7 @@
+@layer components {
+  .infographic-product {
+    &_card {
+      @apply p-6 bg-[#EDD8EE] rounded-3xl w-[324px];
+    }
+  }
+}

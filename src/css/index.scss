@@ -1,0 +1,34 @@
+@import "~reset-css";
+@import "color";
+@import "font";
+
+@import "tailwindcss/base";
+@import "tailwindcss/utilities";
+@import "tailwindcss/components";
+
+@import "./header.scss";
+
+@import "./common/_affluent-button.scss";
+@import "./affluent-header.scss";
+@import "./affluent-hero.scss";
+@import "./affluent-standfirst";
+@import "./affluent-card.scss";
+@import "./affluent-background";
+@import "./affluent-featured-articles";
+@import "./affluent-products";
+@import "./affluent-contact-form";
+@import "./affluent-fullwidth-banner";
+@import "./infographic/index";
+
+body.theme-affluent {
+  font-family: "Inter", sans-serif;
+  @apply relative bg-[#30050D] text-white;
+}
+
+body {
+  font-family: SharpSansDispNo1, sans-serif;
+}
+
+.affluent-container {
+  @apply max-w-[996px] mx-auto px-6 tablet:px-0;
+}

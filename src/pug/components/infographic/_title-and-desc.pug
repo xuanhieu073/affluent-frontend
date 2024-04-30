@@ -1,0 +1,17 @@
+mixin infographic-card-item
+  .infographic_card-item
+    .infographic_card-title MediShield Life 
+    .infographic_card-desc Basic medical insurance plan by the Central Provident Fund (CPF) Board
+
+mixin title-and-desc(title, desc)
+  div(class="max-w-[834px] mx-auto")
+    h2.infographic_title=title
+    p.infographic_desc=desc
+  
+mixin infographic-card
+  .infographic_card-listing 
+    +infographic-card-item
+    .infographic_card-plus +
+    +infographic-card-item
+    .infographic_card-plus +
+    +infographic-card-item()

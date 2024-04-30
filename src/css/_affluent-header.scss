@@ -1,0 +1,98 @@
+@layer components {
+  .affluent-header {
+    --breakpoint: desktop;
+    @media screen and (max-width: 767.98px) {
+      --breakpoint: mobile;
+    }
+    &_container {
+      --p: relative;
+      position: var(--p);
+      @apply left-0 right-0 w-screen z-10 top-0 text-white flex bg-sl-affluent-red;
+    }
+    &_reserve {
+      @apply w-full;
+      height: var(--h);
+    }
+    &_logo {
+      @apply h-[34px] tablet:h-12;
+    }
+    &_branding {
+      grid-area: brand;
+      @apply relative w-4 h-full tablet:h-[calc(100%+32px)] bg-white;
+      @apply tablet:absolute tablet:left-0 tablet:top-0 tablet:bottom-0 tablet:w-12 tablet:h-auto;
+      &:before {
+        content: "";
+        @apply absolute w-2 left-0 top-0 bottom-0 bg-sl-affluent-beige;
+        @apply tablet:w-6;
+      }
+      &:after {
+        content: "";
+        @apply absolute w-2 left-2 top-0 bottom-0 bg-sl-affluent-beige-100;
+        @apply tablet:w-6 tablet:left-6;
+      }
+    }
+    &_layout {
+      @apply grid items-center justify-between w-full;
+      @apply tablet:static tablet:max-w-[1200px] tablet:mx-auto tablet:flex tablet:h-auto tablet:w-full;
+      > * {
+        @apply py-4;
+      }
+      @media screen and (max-width: 1288px) {
+        margin-left: 48px;
+      }
+      @media screen and (max-width: 960.98px) {
+        // padding-right: 24px;
+        margin-left: 0;
+        height: var(--h);
+        grid-template-rows: auto 1fr;
+        grid-template-columns: 16px 1fr auto;
+        grid-template-areas:
+          "brand logo cta"
+          "menu menu menu";
+      }
+    }
+    &_start {
+      @apply flex gap-x-3;
+      grid-area: logo;
+    }
+    &_menu-ctrl {
+      @apply tablet:hidden;
+    }
+    &_center {
+      @apply relative justify-center pt-12 pl-6 pr-4 bg-sl-affluent-red h-full;
+      @apply tablet:static tablet:ml-auto tablet:mr-[min(4vw,64px)] tablet:p-0 tablet:h-auto;
+      grid-area: menu;
+      @media screen and (max-width: 960.98px) {
+        --d: none;
+        display: var(--d);
+      }
+    }
+    &_end {
+      @apply mobile:pr-4;
+      .affluent-button_primary {
+        @apply px-[10px] mobile:px-[26px];
+      }
+    }
+    &_menu {
+      grid-area: cta;
+      @apply flex flex-col gap-y-8;
+      @apply tablet:inline-flex tablet:flex-row tablet:gap-[min(3vw,48px)];
+      &-link {
+        @apply flex justify-between cursor-pointer;
+        img {
+          @apply tablet:hidden;
+        }
+      }
+    }
+    &_submenu {
+      @apply w-full max-w-[1200px] absolute top-0 left-0 right-0 bottom-0 z-10;
+      @apply tablet:top-auto tablet:bottom-auto tablet:left-1/2 tablet:-translate-x-1/2;
+      &-container {
+        @apply tablet:mt-4 bg-white drop-shadow-xl tablet:rounded-xl h-full tablet:h-auto;
+      }
+      &-close {
+        @apply block tablet:hidden;
+      }
+    }
+  }
+}

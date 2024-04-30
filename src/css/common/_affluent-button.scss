@@ -1,0 +1,19 @@
+@layer components {
+  .affluent-button {
+    &_primary {
+      @apply inline-block px-6 tablet:px-[26.5px] py-[13.5px] tablet:py-4 rounded-full text-[12px] tablet:text-base font-normal cursor-pointer;
+      border-radius: 56px;
+      border: 1.5px solid
+        var(--SL-Primary-Button-Border, rgba(242, 227, 199, 0.15));
+      background: linear-gradient(
+        151deg,
+        rgba(224, 224, 224, 0.19) 0.84%,
+        rgba(255, 255, 255, 0) 109.48%
+      );
+      backdrop-filter: blur(32px);
+    }
+    &_link {
+      @apply text-[14px] tablet:text-[16px] leading-[1.2] font-normal text-sl-affluent-beige cursor-pointer;
+    }
+  }
+}

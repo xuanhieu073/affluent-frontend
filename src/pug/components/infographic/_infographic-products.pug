@@ -1,0 +1,24 @@
+mixin infographic-product-card 
+  .infographic-product_card
+    .flex.mb-4
+      h4(class="text-singlife-purple font-semibold text-[18px]") Singlife Shield Starter
+      button
+    .px-2.py-2.mb-2
+      p(class="text-[14px] leading-[1.4] font-medium text-grey") As-charged coverage of up to S$20,000/year at preferred medical providers
+    .flex.bg-white.rounded-md.mb-6.p-2
+      button
+      div(class="text-[14px] leading-[1.4] font-medium text-grey") 
+        | Your out-of-pocket payment is capped at 
+        span(class="text-singlife-purple") S$3,500 for the deductibles plus 10% of the remaining hospital 
+        | bill
+    .flex.justify-between
+      p Premium Payable
+      span S$300.00
+
+
+
+mixin infographic-products
+  .flex.gap-6.justify-center
+    +infographic-product-card
+    +infographic-product-card
+    

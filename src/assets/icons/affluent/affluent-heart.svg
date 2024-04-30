@@ -1,0 +1,26 @@
+<svg width="66" height="64" viewBox="0 0 66 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle opacity="0.7" cx="20.3208" cy="38.0002" r="15.3208" fill="url(#paint0_radial_3266_3441)" fill-opacity="0.5"/>
+<g filter="url(#filter0_b_3266_3441)">
+<path d="M23.7256 10C31.42 10 35.0309 14.3809 35.8746 16.5713C37.3932 14.3809 40.6329 10 47.5173 10C57.6414 10 63.2097 19.6042 60.1724 27.1865C57.1352 34.7688 43.1302 46.3949 35.8746 53.4717C28.6189 47.2374 13.5003 33.2523 11.0705 27.1865C8.03325 19.6042 14.1077 10 23.7256 10Z" fill="white" fill-opacity="0.21"/>
+</g>
+<g filter="url(#filter1_f_3266_3441)">
+<path d="M35.3816 16.7612L35.7402 17.6923L36.3087 16.8723C37.8073 14.7108 40.9091 10.5283 47.5173 10.5283C57.2706 10.5283 62.5791 19.7576 59.682 26.99C58.9526 28.8111 57.5477 30.9101 55.7059 33.1627C53.8691 35.4092 51.6215 37.7798 49.2337 40.1432C46.8467 42.5058 44.3267 44.8542 41.9461 47.0577C41.634 47.3465 41.3242 47.633 41.0174 47.9167C39.1337 49.6585 37.3621 51.2968 35.8532 52.756C32.2302 49.6268 26.8515 44.7493 22.038 39.894C19.5487 37.383 17.2163 34.8837 15.3578 32.639C13.4886 30.3813 12.1353 28.424 11.5609 26.99C8.66978 19.7725 14.4623 10.5283 23.7256 10.5283C31.1966 10.5283 34.6146 14.7701 35.3816 16.7612Z" stroke="white" stroke-opacity="0.23" stroke-width="1.0566"/>
+</g>
+<defs>
+<filter id="filter0_b_3266_3441" x="-2.39604" y="-2.67925" width="76.0755" height="68.8302" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImageFix" stdDeviation="6.33962"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_3266_3441"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_3266_3441" result="shape"/>
+</filter>
+<filter id="filter1_f_3266_3441" x="5.60245" y="5.31925" width="60.0786" height="52.8332" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2.34038" result="effect1_foregroundBlur_3266_3441"/>
+</filter>
+<radialGradient id="paint0_radial_3266_3441" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(14.8622 34.7174) rotate(55.8855) scale(16.7852 14.6101)">
+<stop stop-color="#D8B68C"/>
+<stop offset="1" stop-color="#967962"/>
+</radialGradient>
+</defs>
+</svg>

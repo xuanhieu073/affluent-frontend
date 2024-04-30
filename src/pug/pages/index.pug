@@ -1,0 +1,32 @@
+extends ../templates/_layout
+
+block variables
+  -
+    var appId = 'affluent';
+    var title = 'Affluent Page';
+    var description = 'Description: This page is top page.';
+    
+
+block content
+  +affluent-background
+  +affluent-header
+  +affluent-hero
+  +affluent-spacer(80, 180)
+  .affluent-container
+    +affluent-standfirst("<p><b>Secure Your Tomorrow</b> with Confidence</p>", "<p>Experience personalised financial solutions at every milestone. Trust us to:</p>")
+    +affluent-spacer(32, 64)
+    +affluent-card_icon-list
+    +affluent-spacer(80, 158)
+    +affluent-card-large("<p>Singlife Legacy <b>Indexed Universal Life</b></p>", "<p>Your legacy is more than just assets – it’s the impact you leave behind. Let us help you craft a legacy plan that ensures your values and achievements truly last.</p>", ["Grow your money while staying protected", "Lorem ipsum dolor sit amet consectetur adipisicing elit.", "Lorem ipsum dolor sit amet consectetur adipisicing elit."])
+    +affluent-spacer(80, 86)
+    +affluent-standfirst("<p><b>Financial Freedom</b></p>", "<p><a>Discover more</a> on how we can help you.</p>")
+    +affluent-spacer(24, 94)
+    +affluent-standfirst("<p>Our Suite of <b>Personalised Solutions</b></p>", "<p>Rely on our curated solutions to ensure a secure financial future for both you and your loved ones.</p>")
+    +affluent-spacer(24, 63)
+    +affluent-products
+    +affluent-spacer(80, 252)
+    +affluent-standfirst("<p><b>Grow</b> with Singlife</p>", "<p>Grow together, grow with you, <span class='text-beige'><a href='#'>grow with me.</a></p>", "Grow together now")
+    +affluent-spacer(24, 63)
+    +affluent-featured-articles
+    +affluent-spacer(80, 180)
+    +affluent-contact-form

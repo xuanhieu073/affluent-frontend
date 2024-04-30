@@ -1,0 +1,133 @@
+mixin affluent-contact-form_dropdown(dropdownList = [{value:'Journalist', label:'Journalist'}, {value:'Customer', label:'Customer'}], name="dropdown-id")
+  .affluent-contact-form_dropdown-container(x-data=`{showDropdown: false, dropdownList: ${JSON.stringify(dropdownList)}, cbvalue: {value: ''}}` x-modelable="cbvalue.value" x-model="value" x-init="$watch('value', () => inputValidation(fields[fieldName].el))")
+    input(name=name type='hidden' :value="cbvalue?.value || ''")&attributes(attributes)
+    .affluent-contact-form_dropdown-select.form-field(@Click="showDropdown = !showDropdown" x-bind="errorclass")
+      p.affluent-contact-form_dropdown-value(x-text=`cbvalue.value ? cbvalue.label : 'Select'` :class="{ 'placeholder': !cbvalue?.value }")
+      .affluent-contact-form_dropdown-divider
+      .affluent-contact-form_dropdown-icon(:class="showDropdown && 'opened'")
+        img(src=path+"assets/icons/affluent/affluent-chevron-down.svg")
+    .affluent-contact-form_dropdown-list(x-show="showDropdown")
+      template(x-for="item in dropdownList" :key="item.label")
+        span.affluent-contact-form_dropdown-item(@click=`cbvalue = item; showDropdown = false` :class="cbvalue?.value !== item.value || 'checked'" x-text="item.label")
+
+mixin affluent-contact-form_phone-dropdown(dropdownList = [{"label":"Singapore","value":"+65"},{"label":"Afghanistan","value":"+93"},{"label":"Albania","value":"+355"}])
+  .affluent-contact-form_dropdown-phone.relative(
+    x-data=`{showDropdown: false, dropdownList: ${JSON.stringify(dropdownList)}, cbvalue: { value: '+65', label: '+65' }, tel: '', fulltel: ''}` 
+    x-modelable="fulltel" 
+    x-model="value"
+    x-init="$watch('cbvalue', val => fulltel = val.value+tel); $watch('tel', val => fulltel = cbvalue.value+val);"
+  )
+    .affluent-contact-form_dropdown-list(x-show="showDropdown")
+      template(x-for="item in dropdownList" :key="item.value")
+        span.affluent-contact-form_dropdown-item(@click=`cbvalue = item; showDropdown = false` :class="cbvalue?.value !== item.value || 'checked'" x-text="item.label")
+    .affluent-contact-form_dropdown-container
+      input(name="country-code" type='hidden' :value="cbvalue?.value || ''")
+      .affluent-contact-form_dropdown-select.select-control.form-field(@Click="showDropdown = !showDropdown" x-bind="errorclass")
+        p.affluent-contact-form_dropdown-value(x-text=`cbvalue.value`)
+        .affluent-contact-form_dropdown-icon(:class="showDropdown && 'opened'")
+          img(src=path+"assets/icons/affluent/affluent-chevron-down.svg")
+        .affluent-contact-form_dropdown-divider
+    input.input-control.form-field(x-model="tel")&attributes(attributes)
+
+mixin json-player(id, src, width, height)
+  lottie-player(id=id, src=src, style=`width:${width}px;height:${height}px`,mode="normal", background="transparent", speed="1", autoplay)&attributes(attributes)
+
+mixin affluent-contact-form
+  <script src="https://www.google.com/recaptcha/api.js?render=6LfJCTkkAAAAADNMBzfx5kjhoKs4RwsRBARff0Fq"></script>
+  .affluent-contact-form
+    .affluent-contact-form_header
+      .affluent-contact-form_title 
+        p Ready to take&nbsp; <b>the next step?</b>
+      .affluent-contact-form_desc
+        p Connect with us today and let's start building your financial future together. 
+          | <br/>
+          | <br/>
+          | If you’d like to speak to someone, you can call us at <b>+65 6827 9933 (Mon – Fri, 8.45am to 5.30pm).</b>
+    form.affluent-contact-form_form(
+      name="affluent-contact-form"
+      onsubmit="event.preventDefault()"
+      x-data="affluent_contact_form" 
+      data-url="http://localhost:4999/form"
+      data-url-success-animation="../../assets/images/sl-animate-success.json"
+      data-url-fail-animation="../../assets/images/sl-animate-fail.json"
+      data-sitekey="6LfJCTkkAAAAADNMBzfx5kjhoKs4RwsRBARff0Fq"
+    )
+      .affluent-contact-form_form-control(x-bind="datafield")
+        label Area of Interest <span>*</span>
+        +affluent-contact-form_dropdown([{value:'1-10', label:'1-10'}, {value:'11-50', label:'11-50'}, {value: '51-100', label: '51-100'}, {value: 'more-than-100', label: 'More than 100'}], name="aoi")(
+          x-bind="textfield"
+          data-primary="true"
+          data-check-validation="true"
+          data-error-message="Please fill in your Area of Interest",
+        )
+        span.affluent-contact-form_error-message(x-bind="errormessage")
+      .affluent-contact-form_form-control(x-bind="datafield")
+        label Name
+        input.form-field(
+          name="affluentname" 
+          x-bind="textfield"
+          x-model="value"
+          data-check-validation="true"
+          data-error-message="Please fill in your name")
+        span.affluent-contact-form_error-message(x-bind="errormessage")
+      .affluent-contact-form_form-control(x-bind="datafield")
+        label Contact Number
+        input.form-field(type="text" 
+          name="contactnumberv1" 
+          placeholder="9661  3132"
+          x-bind="textfield"
+          x-model="value"
+          data-check-validation="true",
+          data-error-message="Please fill in your contact number",
+          data-custom-regex="^(6|8|9)[0-9]{7}$",
+          data-custom-regex-error="Invalid contact number format",
+        )
+        span.affluent-contact-form_error-message(x-bind="errormessage")
+      .affluent-contact-form_form-control(x-bind="datafield")
+        label Contact number (with country code)
+        +affluent-contact-form_phone-dropdown()(
+          name="contactnumberv2"
+          placeholder="9661  3132"
+          x-bind="textfield"
+          data-check-validation="true",
+          data-error-message="Please fill in your contact number",
+          data-custom-regex="^(?:(?=\\+65.*)\\+65(6|8|9)[0-9]{7}|(?!.*\\+65)\\+[0-9]*)$",
+          data-custom-regex-error="Invalid contact number format",
+        )
+        span.affluent-contact-form_error-message(x-bind="errormessage")
+      .affluent-contact-form_form-control(x-bind="datafield")
+        label Email address
+        input.form-field(type="text" 
+          name="email" 
+          x-bind="textfield"
+          x-model="value"
+          placeholder="Alessandro.Guantemala@gmail.com"
+          data-check-validation="true",
+          data-error-message="Please fill in your Email",
+          data-custom-regex='^(([^<>()[\\]\\.,;:\\s@\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\"]+)*)|(\\".+\\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$',
+          data-custom-regex-error="Invalid email format",
+        )
+        span.affluent-contact-form_error-message(x-bind="errormessage")
+      .affluent-contact-form_form-control(x-bind="datafield")
+        .checkbox-group
+          input.form-field(type="checkbox" 
+            name="send_via_email" 
+            x-bind="textfield"
+            x-model="value"
+            data-value="sendviaemail"
+          )
+          label Send me useful articles and related offers via email.
+        span.affluent-contact-form_error-message(x-bind="errormessage")
+      div.affluent-contact-form_note 
+        p By clicking "Submit", you consent to Singapore Life Ltd. (“Singlife”) and Singlife related group of companies contacting you to provide you with information concerning Singlife and Singlife related group of companies' products and services. You also consent to Singlife using, disclosing or transferring your personal data in this form to Singlife related group of companies, third party providers or intermediaries, whether located in Singapore or elsewhere, for the above purposes and for research, audit, regulatory and compliance purposes. For details of Singlife's Data Protection Notice, please refer to <a href="#">singlife.com/pdpa.</a> To withdraw your consent at any time, please call Singlife at +65 6827 9933.
+      button.affluent-button_primary.affluent-contact-form_submit(type="submit" @click="onSubmitWithRecapt()") Submit
+      template(x-if="status != 'idle'")
+        .sl-reachout-form_result
+          .sl-success-message(x-show="status == 'success'")
+            +json-player("sl-success", "", 150, 150).mx-auto.flex.items-center(x-ref="success-player")
+            p Yay! Form received
+            .description Thank you for your submission.
+          .sl-error-message(x-show="status == 'fail'")
+            +json-player("sl-fail", "", 150, 150).mx-auto.flex.items-center(x-ref="fail-player")
+            p Oh no! We encountered an error
+            .description Sorry, there seems to be a problem with this page. Please refresh and try again in a few minutes.

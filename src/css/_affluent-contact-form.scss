@@ -1,0 +1,122 @@
+@layer components {
+  .affluent-contact-form {
+    @apply flex flex-col mobile:flex-row gap-y-6 gap-x-[102px];
+    &_header {
+      @apply mobile:w-[304px] flex-shrink-0;
+    }
+    &_title {
+      p {
+        @apply text-center mobile:text-left text-[18px] mobile:text-[40px] font-light mb-4 mobile:mb-8;
+        b {
+          @apply font-semibold;
+        }
+      }
+    }
+    &_desc {
+      p {
+        @apply text-center mobile:text-left text-[14px] mobile:text-[18px] leading-[1.2] font-light;
+        b {
+          @apply font-semibold;
+        }
+      }
+    }
+    &_form {
+      @apply flex-1 rounded-2xl overflow-hidden flex flex-col gap-y-6 px-4 py-6 mobile:p-10;
+      border: 1.5px solid var(--SL-Primary-Button-Border, rgba(242, 227, 199, 0.15));
+      background: linear-gradient(151deg, rgba(224, 224, 224, 0.19) 0.84%, rgba(255, 255, 255, 0.00) 109.48%);
+      backdrop-filter: blur(32px);
+      &-control {
+        @apply flex flex-col gap-2;
+        label {
+          @apply text-[12px] mobile:text-[14px] leading-[1.2] font-medium;
+          span {
+            @apply text-sl-affluent-red-100;
+          }
+        }
+        .checkbox-group {
+          @apply flex gap-2 items-center;
+        }
+      }
+      input {
+        @apply text-[14px] leading-[1.2] text-white block px-6 py-3 mobile:py-4;
+      }
+      input[type='checkbox'] {
+        @apply p-0;
+      }
+      .form-field {
+        @apply rounded-[4px] outline-none;
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        background: rgba(250, 250, 250, 0.05);
+        &.error {
+          @apply border-sl-affluent-red-100;
+        }
+      }
+    }
+    &_note {
+      p {
+        @apply text-[12px] leading-[1.2] text-white/80;
+        a {
+          @apply underline;
+        }
+      }
+    }
+    &_submit {
+      @apply w-[180px] mx-auto;
+    }
+    &_error-message {
+      @apply text-[12px] leading-[1.4] text-sl-affluent-red-100 font-semibold;
+    }
+    &_dropdown {
+      &-container {
+        @apply relative;
+        .error {
+          @apply border-sl-affluent-red-100;
+        }
+      }
+      &-select {
+        @apply flex relative items-center justify-between cursor-pointer select-none;
+        .placeholder {
+          @apply text-white/60;
+        }
+      }
+      &-value {
+        @apply text-[14px] leading-[1.2] px-6 py-3 mobile:py-4 flex-1;
+      }
+      &-icon {
+        @apply px-6 flex items-center justify-center transition-all;
+        &.opened {
+          @apply rotate-180;
+        }
+      }
+      &-divider {
+        @apply h-[30px] w-[1px] bg-sl-affluent-gray-100/60;
+      }
+      &-list {
+        @apply z-20 absolute left-0 right-0 top-full mt-2 bg-white border border-grey-200 rounded-[4px] max-h-[275px] overflow-y-auto;
+      }
+      &-item {
+        @apply block py-2 px-4 text-[14px] leading-[1.6] text-black cursor-pointer hover:bg-grey-100 select-none;
+        @apply first-of-type:rounded-t-lg pt-4;
+        @apply last:rounded-b-lg pb-4;
+        &.checked {
+          @apply font-semibold bg-sl-affluent-gray-200;
+        }
+      }
+      &-phone {
+        @apply flex;
+        .select-control {
+          @apply rounded-tr-none rounded-br-none border-r-0 flex-shrink-0;
+          .affluent-contact-form_dropdown-value {
+            @apply pr-0;
+          }
+          .affluent-contact-form_dropdown-icon {
+            @apply px-2;
+          }
+        }
+        .input-control {
+          @apply w-full rounded-tl-none rounded-bl-none border-l-0 flex-1;
+        }
+      }
+    }
+  }
+}

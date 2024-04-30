@@ -1,0 +1,59 @@
+mixin affluent-card-icon(iconpath, desc)
+  a(href="#").affluent-card_icon
+    img.affluent-card_icon-img(src=path+iconpath, alt="affluent-standfirst")
+    p.affluent-card_icon-desc=desc
+
+mixin affluent-card_icon-list
+  .affluent-card_icon-list(x-data="affluent_leadinsection")
+    +affluent-card-icon("assets/icons/affluent/affluent-heart.svg", "Protect your loved ones and enjoy peace of mind")
+    +affluent-card-icon("assets/icons/affluent/affluent-chart.svg", "Grow and accumulate your wealth strategically")
+    +affluent-card-icon("assets/icons/affluent/affluent-shield.svg", "Tailor solutions for a secure financial future")
+    +affluent-card-icon("assets/icons/affluent/affluent-satchel.svg", "Plan an impactful and meaningful legacy that lasts")
+
+mixin affluent-card-large(title, desc, listItems)
+  .affluent-card_large.affluent-card_bg.reverse
+    .affluent-card_with-image
+      .affluent-card_eyebrow <b>TAILORED</b> FOR YOU
+      .affluent-card_content 
+        .affluent-card_header
+          h4.affluent-card_title !{title}
+          h4.affluent-card_desc !{desc}
+        ul.affluent-card_list 
+          each item in listItems
+            li.affluent-card_item 
+              img(src=path+"assets/icons/affluent/affluent-tick-circle.svg", alt="affluent-item-mark-icon")
+              p=item
+      .affluent-card_cta 
+        a.affluent-button_primary Discover more
+        a.affluent-button_link.underline Lorem ipsum
+    .affluent-card_img-container
+      img.affluent-card_img(lazy-src=path+"assets/images/affluent/affluent-card-image-small.png", alt="")
+
+mixin affluent-card-medium(eyebrow, title, desc, listItems)
+  .affluent-card_medium.affluent-card_bg
+    .affluent-card_eyebrow=eyebrow
+    .affluent-card_content 
+      .affluent-card_header
+        .affluent-card_medium-title
+          h4.textctn=title
+          .reservespc=title
+        .affluent-card_medium-desc
+          p.textctn=desc
+          .reservespc Enjoy yearly payouts, a money-back guarantee and more earnings over time.
+      ul.affluent-card_list 
+        each item in listItems
+          li.affluent-card_item 
+            img(src=path+"assets/icons/affluent/affluent-tick-circle.svg", alt="affluent-item-mark-icon")
+            p=item
+    .affluent-card_cta 
+      a.affluent-button_primary Discover more
+
+mixin affluent-card-image(title, image)
+  .affluent-card_image.affluent-card_bg 
+    .affluent-card_image-container 
+      img(lazy-src=path + image, alt="affluent-article-image")
+    .affluent-card_image-content
+      .affluent-card_image-title=title
+      a(href="#").affluent-card_image-readmore
+        p Read 
+        img(src=path+"assets/icons/affluent/affluent-arrow-right.svg", alt="article-readmore-icon")

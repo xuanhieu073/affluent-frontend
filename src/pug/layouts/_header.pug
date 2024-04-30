@@ -1,0 +1,602 @@
+mixin main-main-button(name, index, href)
+  a.sl-main-menu-link.group(href=`${href}`, x-ref=`menu${index+1}`, @mouseover=`hoverMenu(${index}, $refs.mainMenu${index+1}, $refs.menu${index+1}), menuSearchOpen = false;`)&attributes(attributes)
+    span.sl-inner(:class=`{'sl-main-menu-link-hover': menuOpen[${index}]}`)= name
+    //- span.sl-main-menu-hover-line(:class=`{'sl-main-menu-link-hover': menuOpen[${index}]}`)
+
+mixin menu-link(href='#', name)
+  a.sl-menu-link(href=href)&attributes(attributes)= name
+    .h-6.w-6.sl-chevron
+      img.relative.h-3(src= path + 'assets/icons/sl-icon-chevron.svg')
+
+mixin sub-menu-link(href='#', label)
+  a.sl-main-sub-menu-link(href=href, @click=`setCtaDataLayer('Header Navigation', $el.innerHTML, true)`, target="_self")&attributes(attributes)= label
+    block 
+
+mixin banner-search-mascot
+  .sl-banner-search-mascot
+    img.sl-banner-search-mascot-image(src= path +'assets/images/search-results-banner-mascot.png')
+
+mixin header (props = {})
+  header.sl-header(x-data=`{
+      width: window.innerWidth,
+      scrollNumber: 0,
+      mobileScrollNumber: 0,
+      stopPoint: $refs.stop.offsetTop,
+      startPoint: $refs.start.offsetTop,
+      menuShadow: false,
+      menuMobileOpen: false,
+      menuShow: false,
+      menuLevel: 0,
+      menuProducts: false,
+      menuMobile1: false, menuMobile2: false, menuMobile3: false, menuMobile4: false, menuMobile5: false, menuMobile6: false,
+      menuMobileLogin: false,
+      menuOpen: [false, false, false, false, false, false, false],
+      menuMainOpen: false,
+      menuLoginOpen: false,
+      menuSearchOpen: false,
+      menuForceShow: false,
+      toggleMenuMobile() {
+        this.menuMobile1 = false;
+        this.menuMobile2 = false;
+        this.menuMobile3 = false;
+        this.menuMobile4 = false;
+        this.menuMobile5 = false;
+        this.menuMobile6 = false;
+        this.menuMobileLogin = false;
+        this.menuLevel = 1;
+        this.menuMobileOpen = this.menuMobileOpen ? this.closeMenuMobile() : true;
+      },
+      closeMenuMobile() {
+        this.menuMobileOpen = false;
+      },
+      toggleSearch() {
+        this.menuSearchOpen = !this.menuSearchOpen;
+        if (this.width < 960) {
+          this.menuShadow = this.menuSearchOpen;
+        }
+      },
+      resetMenu() {
+        this.menuMainOpen = false;
+        if (!this.menuForceShow) this.menuOpen = [false, false, false, false, false, false, false];
+      },
+      menuIsOpen() {
+        for (var value of this.menuOpen) {
+          if (value) return true;
+        }
+        return false;
+      },
+      toggleMenu(index) {
+        if (!this.menuOpen[index]) this.resetMenu();
+        this.menuOpen[index] = this.menuOpen[index] ? false : true;
+        this.menuMainOpen = this.menuIsOpen();
+      },
+      hoverMenu(index, ref, self) {
+        if (!this.menuForceShow) {
+          if (!this.menuOpen[index]) this.resetMenu();
+          this.menuOpen[index] = true;
+          this.menuOpen[4] = false;
+          this.menuMainOpen = this.menuIsOpen();
+          let maxLeft = document.documentElement.clientWidth - 500;
+          let parentOffLeft = document.getElementById('sl-main-menu').offsetLeft + self.offsetLeft;
+          let offLeft = (parentOffLeft-500) >= 0 ? parentOffLeft+(self.offsetWidth/2) : 500;
+          //console.log('offset: '+parentOffLeft  + ' width: '+self.offsetWidth + ' maxLeft: ' +maxLeft);        
+          if (offLeft > maxLeft) { offLeft = maxLeft; }
+          $nextTick(() => {
+            document.getElementById('sl-menu-content').style.height = ref.offsetHeight + 'px';
+          });
+          
+          //document.getElementById('sl-menu-sub-menu').style.left = offLeft + 'px';
+          document.getElementById('sl-main-menu-hover-line').style.left = self.offsetLeft+(self.offsetWidth/2)-24 + 'px';
+          if(this.menuOpen[4] == false) document.getElementById('sl-main-menu-hover-line').classList.remove('hide-opacity');
+        }
+      },
+      hoverOutMenu() {
+        this.menuShow = false;
+        this.menuMainOpen = false;
+        document.getElementById('sl-menu-sub-menu').style.left = '';
+        if (!this.menuForceShow) this.menuOpen = [false, false, false, false, false, false, false];
+        if(this.menuOpen[4] == false) document.getElementById('sl-main-menu-hover-line').classList.add('hide-opacity');
+      },
+      closeMenu(index) {
+        this.menuOpen[index] = false;
+        this.menuMainOpen = false;
+        return false
+      }
+    }`, @scroll.window=`
+      scrollNumber = window.pageYOffset;
+      stopPoint = $refs.stop.offsetTop;
+      menuShadow = (scrollNumber > (stopPoint/2)) ? true : false;
+    `,
+     x-init=`scrollNumber = window.pageYOffset`,
+     x-on:resize.window.debounce="width = window.innerWidth;")&attributes(attributes)
+    - var menuData = [{"text":"Products","content":[{"text":"Insure","description":"Enjoy these special savings when you purchase our plans.","theme":"theme-purple","hasDescription":false,"hasLabel":true,"hasTwoColumn":true,"subCategory":[{"showLabel":true,"nextColumn":false,"text":"Medical & Life Insurance","links":[{"text":"Life Insurance","link":"#"},{"text":"Medical Insurance","link":"#"},{"text":"Critical Illness Insurance","link":"#"},{"text":"Disability Insurance","link":"#"},{"text":"Maternity Insurance","link":"#"},{"text":"Accident Insurance","link":"#"}],"generated":false},{"showLabel":true,"nextColumn":true,"text":"Lifestyle Insurance","links":[{"text":"Life Insurance","link":"#"},{"text":"Medical Insurance","link":"#"},{"text":"Critical Illness Insurance","link":"#"}],"generated":false},{"showLabel":true,"nextColumn":true,"text":"Group Insurance Scheme","links":[{"text":"MINDEF","link":"#"},{"text":"MHA","link":"#"},{"text":"Public Officers","link":"#"}],"generated":false}],"generated":false,"modified":false},{"text":"Invest","description":"Enjoy these special savings when you purchase our plans.","theme":"theme-blue","hasDescription":false,"hasLabel":false,"hasTwoColumn":false,"subCategory":[{"showLabel":false,"nextColumn":false,"text":"-","links":[{"text":"Savings","link":"#"},{"text":"Endowment","link":"#"},{"text":"Retirement","link":"#"},{"text":"Investment Linked Plans","link":"#"},{"text":"Dollar Dex","link":"#"},{"text":"Naivgator","link":"#"},{"text":"Savyy Invest","link":"#"}],"generated":false}],"generated":false,"modified":false},{"text":"Save & Earn","description":"Enjoy these special savings when you purchase our plans.","theme":"theme-red-300","hasDescription":false,"hasLabel":false,"hasTwoColumn":false,"subCategory":[{"showLabel":false,"nextColumn":false,"text":"-","links":[{"text":"Singlife Account","link":"#"},{"text":"Singlife Grow","link":"#"}],"generated":false}],"generated":false,"modified":false}],"viewAll":{"show":true,"label":"View All Products","link":"#"}}]
+
+    .sl-header-wrapper(:class="{'sl-menu-shadow-dropdown': (menuMobileOpen || menuShadow), 'force-show-menu': menuForceShow}", @click.outside="resetMenu()", @mouseover.away="hoverOutMenu()")
+      .sl-header-wrapper_container
+        a.sl-header-logo(href= '#', :class="{'sl-mobile-block-hidden': (menuMobileOpen || menuLevel > 1)}")
+          img(src= path + 'assets/logo/sl-logo-singlife.png', class="object-contain")
+
+        //- desktop menu list
+        .sl-main-menu(id= "sl-main-menu")
+          +main-main-button('Products', 0, '')
+          +main-main-button('Promotions', 1, '')
+          +main-main-button('Make a claim', 2, '')
+          +main-main-button('About us', 3, '')
+          +main-main-button('Blog', 4, 'https://singlife.com/en/blog')
+          +main-main-button('Support', 5, '')
+          .sl-main-menu-hover-line.hide-opacity(id= "sl-main-menu-hover-line", :class="{'hide-opacity': !menuMainOpen}")
+
+        .sl-main-sub-menu.sl-hidden(id= "sl-menu-sub-menu", 
+        :class="{'sl-hidden': !menuMainOpen}",
+        x-show="menuMainOpen",
+        x-transition:enter="transition ease-out duration-150",
+        x-transition:enter-start="opacity-0 scale-90",
+        x-transition:enter-end="opacity-100 scale-100"
+        x-transition:leave="transition ease-in duration-150",
+        x-transition:leave-start="opacity-100 scale-100",
+        x-transition:leave-end="opacity-0 scale-90", style="display: none;")
+          .sl-menu-blank-wrapper(id= "sl-menu-content")
+          //- category grid listing - Products
+          .sl-menu-content-wrapper(x-ref="mainMenu1", :class="{'hide-opacity': !menuOpen[0]}")
+            //- Sample logic to generate the menu
+            each val in [1, 2, 3, 4]
+              - var _columnGenerated = false
+              - var _subLinksGenerated = false                  
+              each category in menuData[0].content
+                if !category.generated && !_subLinksGenerated
+                  - var _length = category.subCategory.length
+                  - var _subGenCount = 0
+                  - var _noBorder = (category.hasTwoColumn && !category.modified) ? 'sl-no-border' : ''
+                  .sl-menu-content(class=`${category.theme} ${category.hasLabel ? '' : 'sl-no-label'} ${_noBorder}`)
+                    if !category.modified
+                      h5.sl-section-label= category.text
+                      if category.hasDescription
+                        p.sl-section-caption= category.description
+                    else
+                      h5.sl-section-label &nbsp;
+                    each subCategory in category.subCategory
+                      if !subCategory.generated
+                        if !subCategory.nextColumn || category.modified
+                          - subCategory.generated = true
+                          - _subGenCount = _subGenCount + 1
+                          div
+                            if subCategory.showLabel
+                              if !_subLinksGenerated
+                                label.sl-main-sub-menu-label= subCategory.text
+                              else
+                                label.sl-main-sub-menu-label.mt-10= subCategory.text
+                            each link in subCategory.links
+                              a.sl-main-sub-menu-link(href= link.link, title=link.text)= link.text
+                          - _subLinksGenerated = true
+                      else
+                        - _subGenCount = _subGenCount + 1
+                      if _subGenCount == _length
+                        - category.generated = true
+                    if (val == 4) && menuData[0].viewAll.show
+                      a.sl-main-sub-menu-link.sl-link-fixed(href= menuData[0].viewAll.link)= menuData[0].viewAll.label
+                        //- =_length
+                    - category.modified = true
+
+          //- category grid listing - Promotion
+          .sl-menu-content-wrapper(x-ref="mainMenu2", :class="{'hide-opacity': !menuOpen[1]}")
+            .sl-menu-content.theme-purple.sl-no-label
+              h5.sl-section-label.text-singlife-teal Promotion
+              p.sl-section-caption Enjoy these special savings when you purchase our plans.
+              div
+                a.sl-main-sub-menu-link(href= "#") Life &amp; Health Insurance
+                a.sl-main-sub-menu-link(href= "#") Car Insurance
+                a.sl-main-sub-menu-link(href= "#") Travel Insurance
+                a.sl-main-sub-menu-link(href= "#") Home Insurance
+                a.sl-main-sub-menu-link(href= "#") Group Insurance Scheme
+            .sl-menu-content.theme-purple.sl-no-label.sl-no-border
+              h5.sl-section-label.text-singlife-purple Customer Rewards
+              p.sl-section-caption Enjoy these special savings when you purchase our plans.
+              div
+                a.sl-main-sub-menu-link(href= "#") View Customer Rewards
+            .sl-menu-content.sl-no-border
+              h5.sl-section-label &nbsp;
+              div
+            .sl-menu-content.sl-no-border
+              h5.sl-section-label &nbsp;
+              div
+              a.sl-main-sub-menu-link.sl-link-fixed-2(href= "#") Form Library
+              a.sl-main-sub-menu-link.sl-link-fixed(href= "#") View All Promotions
+          
+          //- category grid listing - Make a claim
+          .sl-menu-content-wrapper(x-ref="mainMenu3", :class="{'hide-opacity': !menuOpen[2]}")
+            .sl-menu-content.sl-no-label
+              h5.sl-section-label.text-singlife-teal Individual claims
+              div
+                +sub-menu-link("https://google.com", "Health, Critical Illness, Accident")
+                a.sl-main-sub-menu-link(href= "#") Personal Accident
+                a.sl-main-sub-menu-link(href= "#") Home
+                a.sl-main-sub-menu-link(href= "#") Car
+                a.sl-main-sub-menu-link(href= "#") Travel
+            .sl-menu-content.sl-no-label
+              h5.sl-section-label.text-singlife-blue Employee Claims
+              div
+                a.sl-main-sub-menu-link(href= "#") EBConnect
+                a.sl-main-sub-menu-link(href= "#") ClaimConnect
+                a.sl-main-sub-menu-link(href= "#") Corportate Plan
+            .sl-menu-content.sl-no-label
+              h5.sl-section-label.text-singlife-purple Group Claims
+              div
+                a.sl-main-sub-menu-link(href= "#") MINDEF &amp; MHA
+                a.sl-main-sub-menu-link(href= "#") Public Officers
+                a.sl-main-sub-menu-link(href= "#") Personal Accident
+            .sl-menu-content.sl-no-label
+              h5.sl-section-label.text-grey-400 Others
+              div
+                a.sl-main-sub-menu-link(href= "#") Letter of Guarantee
+                a.sl-main-sub-menu-link(href= "#") Pre-Authorisation
+              a.sl-main-sub-menu-link.sl-link-fixed(href= "#") View All Claims
+
+          //- category grid listing - About us
+          .sl-menu-content-wrapper(x-ref="mainMenu4", :class="{'hide-opacity': !menuOpen[3]}")
+            //- 
+              set .theme for category label
+              set '.sl-no-border' for grey border on right
+              set '.sl-no-label' when there no sub category
+            .sl-menu-content.sl-no-label
+              h5.sl-section-label.text-singlife-red-300 About Singlife
+              div
+                a.sl-main-sub-menu-link(href= "#") Our Brand Story
+                a.sl-main-sub-menu-link(href= "#") Board of Directors
+                a.sl-main-sub-menu-link(href= "#") Executive Team
+                a.sl-main-sub-menu-link(href= "#") Corporate Governance
+                a.sl-main-sub-menu-link(href= "#") Sustainability Strategy
+                a.sl-main-sub-menu-link(href= "#") Investor Relations
+            .sl-menu-content.sl-no-label
+              h5.sl-section-label.text-singlife-orange-300 Ecosystem
+              div
+                a.sl-main-sub-menu-link(href= "#") Partners
+            .sl-menu-content.sl-no-label.sl-no-border
+              h5.sl-section-label.text-singlife-blue Careers
+              div
+                a.sl-main-sub-menu-link(href= "#") Corporate
+                a.sl-main-sub-menu-link(href= "#") Financial Advisers
+                a.sl-main-sub-menu-link(href= "#") Affinity Channel
+                a.sl-main-sub-menu-link(href= "#") All Careers
+            .sl-menu-content.sl-no-label
+              h5.sl-section-label.text-grey-400 &nbsp;
+              div
+          
+          //- category grid listing - Blog
+          .sl-menu-content-wrapper(x-ref="mainMenu5", :class="{'hide-opacity': !menuOpen[4]}")
+            //- 
+              set .theme for category label
+              set '.sl-no-border' for grey border on right
+              set '.sl-no-label' when there no sub category
+            .sl-menu-content.sl-no-label.sl-no-border
+              h5.sl-section-label.text-singlife-yellow Money Banter
+              p.sl-section-caption Enjoy these special savings when you purchase our plans.
+              div
+                a.sl-main-sub-menu-link(href= "#") Health &amp; Well Being
+                a.sl-main-sub-menu-link(href= "#") Retirement Planning
+                a.sl-main-sub-menu-link(href= "#") Protection
+                a.sl-main-sub-menu-link(href= "#") Savings
+                a.sl-main-sub-menu-link(href= "#") Investments
+            .sl-menu-content.sl-no-label.sl-no-border
+              h5.sl-section-label.text-singlife-orange-300 &nbsp;
+              p.sl-section-caption.sl-section-caption-space &nbsp;
+                
+              div
+                a.sl-main-sub-menu-link(href= "#") Travel Insurance
+                a.sl-main-sub-menu-link(href= "#") Car Insurance
+                a.sl-main-sub-menu-link(href= "#") Home Insurance
+            .sl-menu-content.sl-no-label.sl-no-border
+              h5.sl-section-label.text-singlife-blue &nbsp;
+              div
+            .sl-menu-content.sl-no-label
+              h5.sl-section-label.text-grey-400 &nbsp;
+              div
+              a.sl-main-sub-menu-link.sl-link-fixed(href= "#") View All Articles
+          
+          //- category grid listing - Support
+          .sl-menu-content-wrapper(x-ref="mainMenu6", :class="{'hide-opacity': !menuOpen[5]}")
+            //- 
+              set .theme for category label
+              set '.sl-no-border' for grey border on right
+              set '.sl-no-label' when there no sub category
+            .sl-menu-content.sl-no-label.sl-no-border
+              h5.sl-section-label.text-singlife-yellow Forms
+              div
+                a.sl-main-sub-menu-link(href= "#paying-policy&section1") Personal Accident Insurance
+                a.sl-main-sub-menu-link(href= "#paying-policy&section2") Car Insurance
+                a.sl-main-sub-menu-link(href= "#paying-policy&section3") Travel Insurance
+                a.sl-main-sub-menu-link(href= "#paying-policy&section4") Home Insurance
+                a.sl-main-sub-menu-link(href= "#") Investment
+            .sl-menu-content.sl-no-label
+              h5.sl-section-label.text-singlife-orange-300 &nbsp;
+              div
+                a.sl-main-sub-menu-link(href= "#policy-changes&tab2Section2") MINDEF
+                a.sl-main-sub-menu-link(href= "#policy-changes&tab2Section3") MHA
+                a.sl-main-sub-menu-link(href= "#policy-changes&tab2Section4") Public Officers
+            .sl-menu-content.sl-no-label
+              h5.sl-section-label.text-grey-400 Resources
+              div
+                a.sl-main-sub-menu-link(href= "#") Useful Guides
+                a.sl-main-sub-menu-link(href= "#") Life, Health, Savings, Retirement
+                a.sl-main-sub-menu-link(href= "#") COVID-19 Advisory
+            .sl-menu-content.sl-no-label
+              h5.sl-section-label.text-singlife-teal Help
+              div
+                a.sl-main-sub-menu-link(href= "#") FAQ
+                a.sl-main-sub-menu-link(href= "#") Contact Us
+                a.sl-main-sub-menu-link(href= "#") How To Make Payment
+                a.sl-main-sub-menu-link(href= "#") Policy Monies
+                a.sl-main-sub-menu-link(href= "#") Policy Changes
+                a.sl-main-sub-menu-link(href= "#") Policy Servicing
+            
+          
+          //- middle section - links
+          .bg-grey-600.flex.flex-row.items-center.justify-center.space-x-10
+            a.sl-menu-white-link(href= '#', title='Make a claim') Make a claim
+            a.sl-menu-white-link(href= '#', title='Contact Us') Contact Us
+            a.sl-menu-white-link(href= '#', title='Make Payments') Make Payments
+            a.sl-menu-white-link(href= '#', title='FAQ') FAQ
+          //- bottom section - promo and qr for app
+          .bg-grey.grid.grid-cols-12(class= "rounded-b-3xl")
+            .col-span-7.p-6.flex.flex-row
+              div
+                p.text-white.font-semibold.mb-2 Up to 43% off Travel Insurance
+                  label.sl-menu-bottom-small-label Promo
+                p.sl-menu-bottom-description Enjoy 30% off on top of any existing promotion for your Singlife Travel Insurance!
+              div.sl-menu-bottom-border
+                button.sl-menu-bottom-button I'm Interested!
+            .col-span-5.flex.flex-row
+              img(src= path + 'assets/icons/sl-img-app-qrcode.svg', class= 'w-[70px] h-auto')
+              div.flex.flex-col.items-start.justify-center.pl-4
+                h5.text-white.font-semibold.mb-2 Get the Singlife App
+                p.sl-menu-bottom-description Save, spend, invest, earn, be insured, and rewarded all in one app!
+
+        //- right menu listing
+        nav.h-full.flex-1.flex.flex-wrap.items-center.justify-end.space-x-4(class= "tablet-header:flex-none")
+          button.flex.items-center(:class="{'sl-mobile-flex-hidden': menuMobileOpen}", @click="toggleSearch(); hoverOutMenu();")
+            img(src= path + 'assets/icons/sl-icon-search.svg')
+          a.sl-hamburger(href= '#', @click="toggleMenuMobile();")
+            img(src= path + 'assets/icons/sl-icon-hamburger.svg', :class="{'hidden': menuMobileOpen}")
+            img.hidden(src= path + 'assets/icons/sl-icon-cross.svg', :class="{'hidden': !menuMobileOpen}")
+          .sl-right-btn-wrapper
+            a.sl-main-menu-button(href="#") Business
+            .relative(@mouseover.away="menuLoginOpen = false")
+              button.sl-main-menu-button.ml-2(@mouseover="menuLoginOpen = true; menuSearchOpen = false; hoverOutMenu();") Login
+              .sl-header-login-menu-spacer(x-show="menuLoginOpen")
+              .sl-header-login-menu(
+              x-show="menuLoginOpen",
+              x-transition:enter="transition ease-out duration-150",
+              x-transition:enter-start="opacity-0 scale-90",
+              x-transition:enter-end="opacity-100 scale-100"
+              x-transition:leave="transition ease-in duration-150",
+              x-transition:leave-start="opacity-100 scale-100",
+              x-transition:leave-end="opacity-0 scale-90")
+                .sl-menu-content-wrap.login
+                  .sl-menu-content.sl-no-label
+                    .sl-main-sub-menu-container
+                      a.sl-main-sub-menu-label.text-singlife-yellow(href="#") Customer Portal
+                    div
+                      .sl-main-sub-menu-container
+                        a.sl-main-sub-menu-link.txt-singlife-red.text-capital(href= "#") 
+                          | MySinglife
+                          img.arrow-menu-icon(src=path + 'assets/icons/icon-menu-arrow.svg')
+                        p.sl-login-section-caption Previously MyAviva, for Aviva customers
+                      .sl-main-sub-menu-container
+                        a.sl-main-sub-menu-link.txt-singlife-red.text-capital(href= "#") 
+                          | Singlife Customer Portal
+                          img.arrow-menu-icon(src=path + 'assets/icons/icon-menu-arrow.svg')
+                        p.sl-login-section-caption Update profile and view your plans here
+                    .sl-main-sub-menu-container
+                      a.sl-main-sub-menu-label.text-singlife-yellow(href="#") Corporate Portal
+                      p.sl-login-section-caption Manage your corporate insurance details or upgrade coverage here
+                    div
+                      .sl-main-sub-menu-container
+                        a.sl-main-sub-menu-link(href= "#") 
+                          | ClaimConnect
+                          img.arrow-menu-icon(src=path + 'assets/icons/icon-menu-arrow.svg')
+                        p.sl-login-section-caption (Previously known as Aviva ClaimConnect) For corporate clients and insured members 
+                      .sl-main-sub-menu-container  
+                        a.sl-main-sub-menu-link(href= "#") 
+                          | EBConnect
+                          img.arrow-menu-icon(src=path + 'assets/icons/icon-menu-arrow.svg')
+                        p.sl-login-section-caption HR Business partners and Intermediaries
+                  .sl-menu-content.sl-no-label
+                    .sl-main-sub-menu-container
+                      a.sl-main-sub-menu-label.text-singlife-grey(href="#") MINDEF, MHA, Public Officers
+                      p.sl-login-section-caption Manage your group insurance details or upgrade coverage here
+                    div
+                      .sl-main-sub-menu-container
+                        a.sl-main-sub-menu-link(href= "#") 
+                          | MINDEF Group Insurance Online
+                          img.arrow-menu-icon(src=path + 'assets/icons/icon-menu-arrow.svg')
+                        p.sl-login-section-caption For MINDEF Group Insurance Scheme customers
+                      .sl-main-sub-menu-container
+                        a.sl-main-sub-menu-link(href= "#") 
+                          | MHA Group Insurance Online
+                          img.arrow-menu-icon(src=path + 'assets/icons/icon-menu-arrow.svg')
+                        p.sl-login-section-caption For MHA Group Insurance Scheme customers
+                      .sl-main-sub-menu-container
+                        a.sl-main-sub-menu-link(href= "#") 
+                          | Public Officers Group Insurance Scheme Online
+                          img.arrow-menu-icon(src=path + 'assets/icons/icon-menu-arrow.svg')
+                        p.sl-login-section-caption For Public Officers Group Insurance Scheme (POGIS) customers
+                  .sl-menu-content.sl-no-label
+                    .sl-main-sub-menu-container
+                      a.sl-main-sub-menu-label.text-singlife-purple(href="#") Financial Advisers
+                      p.sl-login-section-caption Manage your corporate insurance details or upgrade coverage here
+                    div
+                      a.sl-main-sub-menu-link(href= "#") Singlife Online (SOL)
+                      p.sl-login-section-caption Previously known as Aviva Online (AOL)), for Singlife with Aviva financial advisers
+                      a.sl-main-sub-menu-link(href= "#") PocketSQS
+                      p.sl-login-section-caption Access Singlife with Aviva's online sales quotation system.
+                      a.sl-main-sub-menu-link(href= "#") Singlife Advisers
+                      p.sl-login-section-caption For Singlife third-party financial representatives.
+                    a.sl-main-sub-menu-link.sl-link-fixed(href='#') View All Logins
+                
+                //- middle section - links
+                .bg-grey-600.flex.flex-row.items-center.justify-center.space-x-10
+                  a.sl-menu-white-link(href= '#', title='Make a claim') Make a claim
+                  a.sl-menu-white-link(href= '#', title='Contact Us') Contact Us
+                  a.sl-menu-white-link(href= '#', title='Make Payments') Make Payments
+                  a.sl-menu-white-link(href= '#', title='FAQ') FAQ
+                //- bottom section - promo and qr for app
+                .bg-grey.grid.grid-cols-12(class= "rounded-b-3xl")
+                  .col-span-7.p-6.flex.flex-row
+                    div
+                      h5.text-white.font-semibold.mb-2 Up to 43% off Travel Insurance
+                        label.sl-menu-bottom-small-label Promo
+                      p.sl-menu-bottom-description Enjoy 30% off on top of any existing promotion for your Singlife Travel Insurance!
+                    div.sl-menu-bottom-border
+                      button.sl-menu-bottom-button I'm Interested!
+                  .col-span-5.flex.flex-row
+                    img(src= path + 'assets/icons/sl-img-app-qrcode.svg', class= 'w-[70px] h-auto')
+                    div.flex.flex-col.items-start.justify-center.pl-4
+                      h5.text-white.font-semibold.mb-2 Get the Singlife App
+                      p.sl-menu-bottom-description Save, spend, invest, earn, be insured, and rewarded all in one app!
+
+    
+    //- search wrapper
+    form.sl-header-search(action="/en/search", method="GET", role="search",
+    x-show="menuSearchOpen",
+    x-data="search_box"
+    data-json-url="https://simba-mockapi.vercel.app/search/suggestions"
+    x-transition:enter="transition ease-out duration-150",
+    x-transition:enter-start="opacity-0 scale-90",
+    x-transition:enter-end="opacity-100 scale-100"
+    x-transition:leave="transition ease-in duration-150",
+    x-transition:leave-start="opacity-100 scale-100",
+    x-transition:leave-end="opacity-0 scale-90", style="display: none;")
+      input.sl-header-search-input(
+        x-ref="searchInput"
+        id="q", name="q", type="text", autocomplete="off"
+        placeholder="Search products, questions and more..."
+        @input.debounce="getSuggestion($event.target.value)"
+        @keydown="inputCheck($event)"
+      )
+      span.sl-header-search-predictive(x-text="suggestion")
+      .sl-header-search-action
+        button.sl-header-search-btn(type="submit")
+          .text-center.flex.items-center Search
+        button.sl-header-search-close(type="button", @click="menuSearchOpen = false")
+          img(src= path + 'assets/icons/sl-icon-red-cross.svg')
+
+
+    //- black translucent overlay
+    .bg-overlay.fixed.h-full.w-full.z-10.hidden(:class="{'hidden': !menuMobileOpen && ((width <= 960) && !menuSearchOpen) || (width > 960) }")
+
+    //- mobile menu list
+    .sl-mobile-menu.hidden(:class="{'hidden': !menuMobileOpen, 'block': menuMobileOpen}", x-ref="start", @scroll=`mobileScrollNumber = $el.scrollTop;`)
+      .sl-mobile-nav-wrapper(:class="{'shadow-dropdown': mobileScrollNumber > 10}")
+        nav.h-10.flex-1.flex.flex-wrap.justify-end.space-x-4
+          a.sl-hamburger(href= '#', @click="toggleMenuMobile()")
+            img.hidden(src= path + 'assets/icons/sl-icon-cross.svg', :class="{'hidden': !menuMobileOpen}")
+      .sl-mobile-main-menu.hidden(:class="{'hidden': (menuLevel != 1)}", x-ref="stop")
+        .sl-menu-inner-wrapper.pt-10
+          +menu-link('#', 'Products')(@click="menuLevel= 2; menuMobile1 = !menuMobile1;")
+          +menu-link('#', 'Promotion')(@click="menuLevel= 2; menuMobile2 = !menuMobile2;")
+          +menu-link('#', 'Make a claim')
+          +menu-link('#', 'About Us')
+          +menu-link('https://singlife.com/en/blog', 'Blog')
+          +menu-link('#', 'Support')
+        .sl-menu-inner-wrapper
+          hr.sl-menu-inner-hr
+          +menu-link('#', 'Login')(@click="menuLevel= 2; menuMobileLogin = !menuMobileLogin;")
+          +menu-link('#', 'Contact Us')
+          +menu-link('#', 'Make payments')
+          +menu-link('#', 'FAQ')
+
+        p.text-center.mt-5.text-description Looking for corporate solutions? 
+        a.sl-text-link(href='#') Business Solutions
+
+        .bg-grey-100.px-6.py-9.mt-10
+          p.uppercase.text-label.text-singlife-red-300.font-bold Promo
+          p.text-card-sub-header.font-semibold.mt-1 Up to 43% off Travel Insurance
+          p.mt-2 Save, spend, invest, earn, be insured, and rewarded all in one app!
+          a.sl-btn.sl-btn-secondary.py-4.mt-10(href="#") Get a Quote
+        .bg-white.px-6.py-8
+          a.sl-btn.sl-btn-primary(href="#") Get the Singlife App
+      
+      //- sub menu list
+      .sl-sub-menu.hidden(:class="{'hidden': !menuMobile1}")
+        a.sl-menu-link.sl-menu-link-back(href='#', @click="menuLevel= 1; menuMobile1 = !menuMobile1;")
+          .h-6.w-6.sl-chevron.sl-chevron-reverse
+            img.relative.h-3(src= path + 'assets/icons/sl-icon-chevron.svg')
+          span Products
+        label.sl-menu-label.theme-purple Insure
+        //- div.space-y-4
+        .sl-menu-inner-wrapper
+          +menu-link('#', 'Life Insurance')
+          +menu-link('#', 'Medical Insurance')
+          +menu-link('#', 'Critical Illness Insurance')
+        .sl-menu-inner-wrapper
+          hr.sl-menu-inner-hr
+          +menu-link('#', 'Car Insurance')
+          +menu-link('#', 'Travel Insurance')
+          +menu-link('#', 'Home Insurance')
+        .sl-menu-inner-wrapper
+          hr.sl-menu-inner-hr
+          +menu-link('#', 'MINDEF Group')
+          +menu-link('#', 'MHA Group')
+          +menu-link('#', 'Public Officers Group')
+        label.sl-menu-label.theme-purple Insure
+        //- div.space-y-4
+        .sl-menu-inner-wrapper
+          +menu-link('#', 'Life Insurance')
+          +menu-link('#', 'Medical Insurance')
+          +menu-link('#', 'Critical Illness Insurance')
+        .sl-menu-inner-wrapper
+          hr.sl-menu-inner-hr
+          +menu-link('#', 'Car Insurance')
+          +menu-link('#', 'Travel Insurance')
+          +menu-link('#', 'Home Insurance')
+        .sl-menu-inner-wrapper
+          hr.sl-menu-inner-hr
+          +menu-link('#', 'MINDEF Group')
+          +menu-link('#', 'MHA Group')
+          +menu-link('#', 'Public Officers Group')
+        label.sl-menu-label.theme-blue  Invest
+        .sl-menu-inner-wrapper
+          +menu-link('#', 'Savings')
+          +menu-link('#', 'Endownment')
+          +menu-link('#', 'Retirement')
+        a.sl-text-link(href='#') View All Products
+      .sl-sub-menu.hidden(:class="{'hidden': !menuMobile2}")
+        a.sl-menu-link.sl-menu-link-back(href='#', @click="menuLevel= 1; menuMobile2 = !menuMobile2;")
+          .h-6.w-6.sl-chevron.sl-chevron-reverse
+            img.relative.h-3(src= path + 'assets/icons/sl-icon-chevron.svg')
+          span Promotion
+        label.sl-menu-label.theme-teal Promotion
+        .sl-menu-inner-wrapper
+          +menu-link('#', 'Life & Health Insurance')
+          +menu-link('#', 'Car Insurance')
+          +menu-link('#', 'Travel Insurance')
+          +menu-link('#', 'Home Insurance')
+          +menu-link('#', 'Group Insurance Scheme')
+        label.sl-menu-label.theme-purple  Customer Rewards
+        .sl-menu-inner-wrapper
+          +menu-link('#', 'View Customer Rewards')
+        a.sl-text-link(href='#') Download Forms
+        a.sl-text-link(href='#') View All Products
+
+      .sl-sub-menu.hidden(:class="{'hidden': !menuMobileLogin}")
+        a.sl-menu-link.sl-menu-link-back(href='#', @click="menuLevel= 1; menuMobileLogin = !menuMobileLogin;")
+          .h-6.w-6.sl-chevron.sl-chevron-reverse
+            img.relative.h-3(src= path + 'assets/icons/sl-icon-chevron.svg')
+          span Login
+        label.sl-menu-label.theme-red Customer Portal
+        .sl-menu-inner-wrapper
+          +menu-link('#', 'MySinglife')
+          +menu-link('#', 'Singlife Customer Portal')
+        label.sl-menu-label.theme-orange-300  Corporate Portal
+        .sl-menu-inner-wrapper
+          +menu-link('#', 'ClaimConnect')
+          +menu-link('#', 'EBConnect')
+        label.sl-menu-label.theme-grey  MINDEF, MHA, Public Officers
+        .sl-menu-inner-wrapper
+          +menu-link('#', 'MINDEF Group Insurance Online')
+          +menu-link('#', 'MHA Group Insurance Online')
+          +menu-link('#', 'Public Officers Group Insurance Scheme Online')
+        label.sl-menu-label.theme-purple Financial Advisers 
+        .sl-menu-inner-wrapper
+          +menu-link('#', 'Singlife Online (SOL)')
+          +menu-link('#', 'PocketSQS')
+          +menu-link('#', 'Singlife Advisers')    

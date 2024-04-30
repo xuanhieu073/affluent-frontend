@@ -1,0 +1,922 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* Reset old CSS */
+  .sl-header a {
+    border-bottom-width: 0px;
+  }
+  .sl-header a:hover {
+    border-bottom-width: 0px;
+  }
+  /* -end- */
+
+  .sl-header {
+    @apply z-[110]
+    relative
+    top-0;
+
+    .force-show-menu {
+      .sl-main-sub-menu {
+        left: 50% !important;
+      }
+      .sl-menu-content-wrapper {
+        opacity: 1 !important;
+        position: relative !important;
+      }
+      .sl-menu-content-wrapper.hide-opacity {
+        display: none;
+      }
+    }
+    @media (min-width: 961px) {
+      @apply bg-singlife-orange-500;
+    }
+  }
+  .sl-header-wrapper {
+    @apply flex
+    flex-row
+    items-center
+    w-full
+    fixed
+    z-50
+    top-0
+    h-[62px]
+    tablet:transition
+    mobile-max:h-[86px]
+    mobile-max:py-3;
+  }
+  .sl-header-wrapper-unfixed {
+    @apply flex
+    flex-row
+    items-center
+    w-full
+    z-50
+    top-0
+    h-[62px]
+    tablet:transition
+    mobile-max:h-[86px]
+    mobile-max:py-3;
+  }
+
+  .sl-header-wrapper_container {
+    @apply container
+    flex
+    py-0
+    h-full
+    mobile:py-0
+    tablet:max-w-full 
+    desktop:max-w-screen-desktop;
+    // mobile-max:py-3
+    // @media (min-width: 420px) {
+    //   @apply py-3;
+    // }
+  }
+
+  .sl-hamburger {
+    @apply flex
+    items-center
+    justify-center
+    w-10
+    tablet-header:hidden;
+  }
+
+  .sl-mobile-menu {
+    @apply bg-white
+    fixed
+    w-full
+    left-0
+    right-0
+    shadow-dropdown
+    z-50
+    top-0
+    bottom-0
+    overflow-y-auto
+    desktop:hidden;
+    @media (min-width: 420px) {
+      @apply max-w-screen-xs
+      w-96
+      left-auto
+      z-30
+      top-16;
+    }
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+    @media (min-width: 1040px) {
+      display: none !important;
+    }
+  }
+  .sl-mobile-menu::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+  .sl-header-logo {
+    @apply flex
+    pr-3
+    w-[140px]
+    tablet-header:pr-3;
+    @media (min-width: 768px) {
+      @apply pr-10 w-[180px];
+    }
+    @media (min-width: 1110px) {
+      @apply pr-10 w-[180px];
+    }
+    @media (min-width: 1200px) {
+      @apply pr-[4.5rem] w-[220px];
+    }
+    img {
+      @apply -translate-y-[2px] object-contain;
+    }
+  }
+
+  .sl-main-menu {
+    @apply hidden
+    relative
+    space-x-2
+    flex-row
+    flex-1
+    flex-grow
+    items-center
+    justify-start
+    h-full
+    tablet-header:flex;
+    // @media (min-width: 1039px) {
+    //   @apply space-x-1 justify-start;
+    // }
+    @media (min-width: 1039px) {
+      @apply space-x-4 justify-start;
+    }
+    @media (min-width: 1110px) {
+      @apply space-x-6 justify-start;
+    }
+  }
+
+  .sl-main-menu-link {
+    @apply flex
+    relative
+    items-center
+    text-[18px]
+    leading-[25px]
+    font-semibold
+    text-grey
+    transition-colors
+    hover:text-singlife-red;
+    // @media (min-width: 960px) {
+    //   @apply leading-[18px];
+    // }
+    @media (min-width: 1024px) {
+      @apply leading-[25px];
+    }
+
+    &.active{
+      @apply text-singlife-red;
+    }
+  }
+
+  .sl-main-menu-link-hover {
+    @apply text-singlife-red;
+    opacity: 1 !important;
+  }
+
+  /*
+  .sl-main-menu-hover-line {
+    @apply opacity-0
+    hidden
+    absolute
+    top-[25px]
+    left-2/4
+    translate-x-[-50%]
+    w-[46px]
+    border-t-2
+    border-singlife-red-300
+    border-solid
+    transition-opacity
+    group-hover:opacity-100;
+  }*/
+
+  .sl-main-menu-hover-line {
+    @apply opacity-100
+    absolute
+    top-[46px]
+    left-2/4
+    translate-x-[-50%]
+    w-[46px]
+    border-t-2
+    border-singlife-red-300
+    border-solid
+    transition-all
+    group-hover:opacity-100;
+  }
+  .brandstory .sl-main-menu-hover-line {
+    @apply top-[66px];
+  }
+  .sl-header .sl-main-menu-button {
+    @apply h-[52px]
+    text-grey
+    py-1
+    px-5
+    border
+    border-grey
+    items-center
+    whitespace-nowrap
+    rounded-button 
+    text-base 
+    font-semibold 
+    justify-center 
+    tracking-[0.08em]
+    hidden
+    w-28
+    hover:border
+    hover:text-grey
+    tablet-header:flex;
+  }
+
+  .sl-menu-shadow-dropdown {
+    @apply shadow-dropdown
+    bg-white;
+  }
+
+  .sl-menu-blank-wrapper {
+    @apply block
+    bg-white
+    min-h-[400px]
+    transition-all;
+  }
+
+  .sl-main-sub-menu {
+    @apply block
+    absolute
+    mx-auto
+    w-11/12
+    max-w-[1000px]
+    left-1/2
+    translate-x-[-50%]
+    overflow-hidden
+    shadow-dropdown
+    rounded-[24px]
+    transition-all
+    duration-500
+    top-full;
+  }
+
+  // .sl-main-sub-menu.sl-hidden {
+  //   @apply left-[-1000px];
+  // }
+
+  .sl-menu-shadow-dropdown .sl-main-sub-menu {
+    @apply rounded-t-none;
+  }
+
+  .sl-main-sub-menu-label {
+    @apply text-section-label
+    block
+    uppercase
+    font-semibold
+    pl-3
+    pb-1
+    relative
+    text-skin-base
+    before:relative 
+    before:border-l-2 
+    before:border-solid 
+    before:border-skin-base
+    before:h-3
+    before:top-[1px]
+    before:rounded-[99px]
+    before:left-[-12px];
+  }
+
+  .sl-main-sub-menu-label.text-singlife-purple {
+    @apply before:border-singlife-purple;
+  }
+  .sl-main-sub-menu-label.text-singlife-yellow {
+    @apply before:border-singlife-yellow;
+  }
+  .sl-main-sub-menu-label.text-singlife-grey {
+    @apply before:border-[#8A8988] text-[#8A8988];
+  }
+  .sl-main-sub-menu-label.text-singlife-purple-100 {
+    @apply before:border-singlife-purple-100;
+  }
+  .sl-main-sub-menu-label.text-singlife-orange {
+    @apply before:border-singlife-orange;
+  }
+  .sl-main-sub-menu-label.text-singlife-orange-300 {
+    @apply before:border-singlife-orange-300;
+  }
+  .sl-main-sub-menu-label.txt-singlife-teal {
+    @apply before:border-singlife-teal text-singlife-teal;
+  }
+  .sl-main-sub-menu-label.text-singlife-blue {
+    @apply before:border-singlife-blue;
+  }
+  .sl-main-sub-menu-label.text-singlife-black {
+    @apply before:border-singlife-black-100 text-singlife-black-100;
+  }
+  .sl-main-sub-menu-label.text-singlife-grey-100 {
+    @apply before:border-grey-100 text-grey-100;
+  }
+  .sl-main-sub-menu-label.text-singlife-grey-400 {
+    @apply before:border-grey-400 text-grey-400;
+  }
+  .sl-main-sub-menu-label.txt-singlife-red {
+    @apply text-singlife-red before:border-singlife-red;
+  }
+
+  .login .sl-main-sub-menu-label {
+    @apply text-[14px] tracking-[1.3px] hover:tracking-[1.3px];
+  }
+
+  .sl-main-sub-menu-label.text-singlife-purple {
+    @apply before:border-singlife-purple;
+  }
+  .sl-main-sub-menu-label.text-singlife-yellow {
+    @apply before:border-singlife-yellow;
+  }
+  .sl-main-sub-menu-label.text-singlife-grey {
+    @apply before:border-[#8A8988] text-[#8A8988];
+  }
+
+  .sl-main-sub-menu-label.text-singlife-purple-100 {
+    @apply before:border-singlife-purple-100;
+  }
+  .sl-main-sub-menu-label.text-singlife-orange {
+    @apply before:border-singlife-orange;
+  }
+  .sl-main-sub-menu-label.text-singlife-orange-300 {
+    @apply before:border-singlife-orange-300;
+  }
+  .sl-main-sub-menu-label.txt-singlife-teal {
+    @apply before:border-singlife-teal text-singlife-teal;
+  }
+  .sl-main-sub-menu-label.text-singlife-blue {
+    @apply before:border-singlife-blue;
+  }
+  .sl-main-sub-menu-label.text-singlife-black {
+    @apply before:border-singlife-black-100 text-singlife-black-100;
+  }
+  .sl-main-sub-menu-label.text-singlife-grey-100 {
+    @apply before:border-grey-100 text-grey-100;
+  }
+  .sl-main-sub-menu-label.text-singlife-grey-400 {
+    @apply before:border-grey-400 text-grey-400;
+  }
+  .sl-main-sub-menu-label.txt-singlife-red {
+    @apply text-singlife-red before:border-singlife-red;
+  }
+
+  .sl-menu-content {
+    @apply relative
+    after:absolute 
+    after:border-l 
+    after:border-solid 
+    after:border-[#f5f5f5]
+    after:w-0
+    after:right-0
+    after:top-[40px]
+    after:bottom-5
+    last:after:border-none;
+  }
+
+  .sl-menu-content-wrapper {
+    --cols: 5;
+    grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+    @apply bg-white
+    opacity-100
+    transition
+    duration-500
+    absolute
+    w-full
+    z-40
+    top-0
+    min-h-[400px]
+    px-10
+    pt-6
+    pb-12
+    grid
+    gap-6;
+  }
+
+  .sl-menu-content-wrapper.hide-opacity {
+    @apply -z-10;
+  }
+
+  .sl-menu-content-wrap {
+    @apply bg-white
+    opacity-100
+    transition
+    duration-500
+    w-full
+    z-40
+    top-0
+    min-h-[400px]
+    px-10
+    py-6
+    grid
+    grid-cols-3
+    gap-6;
+  }
+
+  .sl-no-border {
+    @apply after:border-none;
+  }
+
+  .sl-section-label {
+    @apply text-description
+    uppercase
+    text-skin-base
+    font-semibold
+    mb-6;
+  }
+
+  .sl-main-sub-menu-container {
+    @apply mb-6;
+  }
+
+  .sl-header .sl-main-sub-menu-link {
+    @apply block
+    first:mt-0
+    pl-3
+    pr-4
+    mt-[18px]
+    text-base
+    tracking-[0.015em]
+    font-normal
+    text-grey
+    hover:text-singlife-red
+    /*hover:font-bold*/
+    hover:tracking-[0.015em]
+    hover:underline;
+  }
+
+  .sl-header .sl-main-sub-menu-link.txt-singlife-purple {
+    @apply before:border-singlife-purple text-singlife-purple;
+  }
+  .sl-header .sl-main-sub-menu-link.txt-singlife-yellow {
+    @apply before:border-singlife-yellow text-singlife-yellow;
+  }
+  .sl-header .sl-main-sub-menu-link.text-singlife-grey {
+    @apply before:border-[#8A8988] text-[#8A8988];
+  }
+  .sl-header .sl-main-sub-menu-link.txt-singlife-purple-100 {
+    @apply before:border-singlife-purple-100 text-singlife-purple-100;
+  }
+  .sl-header .sl-main-sub-menu-link.txt-singlife-orange {
+    @apply before:border-singlife-orange text-singlife-orange;
+  }
+  .sl-header .sl-main-sub-menu-link.txt-singlife-orange-300 {
+    @apply before:border-singlife-orange-300;
+  }
+  .sl-header .sl-main-sub-menu-link.txt-singlife-orange-800 {
+    @apply before:border-singlife-orange text-singlife-orange-800;
+  }
+  .sl-header .sl-main-sub-menu-link.txt-singlife-teal {
+    @apply before:border-singlife-teal text-singlife-teal;
+  }
+  .sl-header .sl-main-sub-menu-link.txt-singlife-blue {
+    @apply before:border-singlife-blue text-singlife-blue;
+  }
+  .sl-header .sl-main-sub-menu-link.text-singlife-black {
+    @apply before:border-singlife-black-100 text-singlife-black-100;
+  }
+  .sl-header .sl-main-sub-menu-link.text-singlife-grey-100 {
+    @apply before:border-grey-100 text-grey-100;
+  }
+  .sl-header .sl-main-sub-menu-link.text-singlife-grey-400 {
+    @apply before:border-grey-400 text-grey-400;
+  }
+  .sl-header .sl-main-sub-menu-link.txt-singlife-red {
+    @apply text-singlife-red-100;
+  }
+
+  .sl-header .sl-main-sub-menu-link.text-capital {
+    @apply uppercase font-semibold text-[14px];
+  }
+
+  .sl-header .login .sl-main-sub-menu-link.text-capital,
+  .login .sl-no-label .sl-main-sub-menu-link,
+  .login .sl-main-sub-menu-label {
+    @apply mb-2;
+  }
+
+  // .sl-header .login .sl-main-sub-menu-link {
+  //   @apply tracking-[1.3px] hover:tracking-[1.3px];
+  // }
+
+  .sl-header .login .sl-main-sub-menu-link {
+    @apply hover:text-singlife-red ml-3;
+  }
+  .sl-header .login .sl-main-sub-menu-link.txt-singlife-red {
+    @apply hover:text-singlife-red;
+  }
+
+  .sl-main-sub-menu-link.sl-link-fixed {
+    @apply text-singlife-red-300
+    absolute
+    font-semibold
+    transition-colors
+    hover:font-semibold
+    hover:text-singlife-red-300
+    bottom-0;
+  }
+  .sl-main-sub-menu-link.sl-link-fixed-2 {
+    @apply text-singlife-red-300
+    absolute
+    font-semibold
+    transition-colors
+    hover:font-semibold
+    hover:text-singlife-red-300
+    bottom-10;
+  }
+
+  .sl-header .sl-menu-white-link {
+    @apply text-white
+    inline-block
+    text-base
+    py-4
+    tracking-[0.015em]
+    hover:text-white
+    hover:font-bold
+    hover:underline;
+  }
+
+  .sl-main-sub-menu-link::before,
+  .sl-menu-white-link::before {
+    display: block;
+    content: attr(title);
+    height: 0;
+    font-weight: 400;
+    overflow: hidden;
+    visibility: hidden;
+  }
+
+  .sl-menu-bottom-button,
+  a.sl-menu-bottom-button {
+    @apply h-10
+    text-white
+    py-3
+    px-5
+    border
+    text-label
+    items-center
+    rounded-3xl
+    whitespace-nowrap
+    transition-colors
+    bg-grey
+    focus:border-white
+    visited:border-white
+    hover:border-[#212121]
+    hover:bg-[#212121];
+  }
+
+  .sl-header .sl-menu-link {
+    @apply flex 
+    text-grey
+    font-semibold 
+    text-base 
+    h-20
+    px-6
+    relative
+    items-center
+    hover:bg-white
+    mobile:hover:bg-skin-hover
+    hover:text-grey;
+  }
+
+  .sl-header .sl-mobile-menu .sl-menu-link {
+    @apply h-10;
+  }
+
+  .sl-header-login-menu .sl-menu-link {
+    @apply text-[16px]
+    font-medium
+    leading-[29px]
+    text-skin-base 
+    hover:text-skin-base;
+  }
+
+  .sl-header .sl-menu-link-back {
+    @apply pl-8
+    h-10
+    mx-6
+    mb-5
+    fixed
+    z-50
+    top-4
+    text-[18px]
+    leading-[25px]
+    hover:text-grey
+    mobile-max:top-0
+    mobile-max:mb-4
+    mobile-max:relative;
+  }
+
+  .sl-chevron {
+    @apply max-w-[24px]
+    absolute
+    items-center
+    flex-1
+    flex
+    flex-wrap
+    right-6
+    justify-center;
+  }
+  .sl-chevron-reverse {
+    @apply left-[-8px]
+    right-auto
+    rotate-180;
+  }
+
+  .sl-menu-label {
+    @apply uppercase
+    mt-6
+    text-label
+    bg-skin-label
+    text-white
+    flex
+    flex-row
+    justify-center
+    rounded-right-side
+    w-fit
+    px-6
+    py-2
+    font-semibold
+    tracking-[.08em]
+    items-center;
+  }
+
+  .sl-menu-link-back + .sl-menu-label {
+    @apply mt-0;
+  }
+
+  .sl-menu-inner-wrapper {
+    @apply space-y-4
+    pb-4;
+  }
+
+  .sl-menu-label + .sl-menu-inner-wrapper {
+    @apply pt-6;
+  }
+
+  .sl-menu-inner-hr {
+    @apply border-t
+    border-grey-200
+    translate-x-6
+    w-10;
+  }
+
+  .sl-header .sl-btn {
+    @apply box-border
+    font-semibold
+    text-base
+    border-solid
+    border
+    flex
+    flex-row
+    items-center
+    w-full
+    justify-center
+    rounded-button
+    h-[52px]
+    hover:border;
+  }
+
+  .sl-sub-menu {
+    @apply py-8;
+  }
+
+  .sl-mobile-block-hidden {
+    @apply hidden 
+    xs:inline-block;
+  }
+  .sl-mobile-flex-hidden {
+    @apply hidden 
+    xs:flex;
+  }
+
+  .sl-text-link {
+    @apply text-center
+    block
+    mt-3
+    text-singlife-red-300
+    font-semibold
+    underline;
+  }
+
+  .sl-btn-primary {
+    @apply bg-singlife-red 
+    border-singlife-red
+    text-white;
+  }
+
+  .sl-btn-secondary {
+    @apply bg-white 
+    border-grey
+    text-grey;
+  }
+
+  .sl-no-label .sl-section-label,
+  .sl-no-label .sl-main-sub-menu-link {
+    @apply pl-0;
+  }
+
+  .sl-section-caption {
+    @apply text-note
+    pr-2
+    text-grey-700;
+  }
+
+  .sl-login-section-caption {
+    @apply text-[11px]
+    pr-2 pl-3
+    text-grey-700;
+  }
+
+  .arrow-menu-icon {
+    @apply ml-2 inline-block relative bottom-[2px];
+  }
+
+  .sl-section-caption-space {
+    @apply h-[33.594px];
+  }
+
+  .sl-section-label + .sl-section-caption {
+    @apply -mt-5 mb-6;
+  }
+
+  .sl-menu-bottom-small-label {
+    @apply text-label
+    font-bold
+    leading-[14px]
+    tracking-[0.08em]
+    uppercase
+    text-singlife-red-300
+    ml-4
+    inline-block
+    before:rounded-full 
+    before:w-1 
+    before:h-1 
+    before:absolute 
+    before:bg-singlife-red-300 
+    before:left-[-8px] 
+    before:top-[6px]
+    relative;
+  }
+  .sl-menu-bottom-description {
+    @apply text-white
+    pr-6
+    font-normal
+    tracking-[0.015em]
+    text-description;
+  }
+  .sl-menu-bottom-border {
+    @apply flex
+    flex-row
+    items-center
+    justify-center
+    px-6
+    border-r
+    border-grey-300 
+    border-opacity-50;
+  }
+
+  .sl-mobile-nav-wrapper {
+    @apply bg-white
+    px-6
+    py-3
+    flex
+    flex-row
+    sticky
+    top-0
+    z-40
+    /*shadow-sticky*/
+    mobile-max:hidden 
+    w-full;
+    &.sl-is-scrolled {
+      @apply shadow-sticky;
+    }
+  }
+
+  .sl-right-btn-wrapper {
+    @apply hidden
+    items-center
+    tablet-header:flex;
+  }
+
+  .sl-header-login-menu-spacer {
+    @apply absolute
+    h-8
+    w-[358px]
+    right-0
+    top-[53px];
+  }
+
+  .sl-header-login-menu {
+    @apply bg-white
+    z-[1]
+    rounded-3xl
+    overflow-hidden
+    w-[1000px]
+    shadow-dropdown
+    absolute
+    right-0
+    top-[64px];
+  }
+
+  .sl-header-search {
+    @apply bg-white
+    z-50
+    flex-1
+    flex
+    flex-wrap
+    fixed
+    top-[62px]
+    w-[calc(100%+1px)]
+    h-[112px]
+    left-1/2
+    translate-x-[-50%]
+    py-6
+    px-6
+    pl-[25px]
+    shadow-dropdown
+    mobile-max:top-[86px]
+    tablet:px-10
+    tablet:rounded-3xl
+    tablet:shadow-sticky
+    tablet:w-4/5
+    tablet:h-[104px]
+    desktop:w-[1000px];
+  }
+
+  .sl-header-search-input {
+    @apply flex
+    flex-grow
+    focus:outline-none
+    placeholder:text-[#c9c9c9]
+    font-normal
+    text-base
+    max-h-12
+    items-center
+    border-b
+    border-grey-200
+    tablet:max-h-16
+    tablet:text-section-header-h2
+    tablet:font-semibold
+    tablet:border-none
+    tablet:w-auto
+    tablet:mr-6
+    desktop:mr-0
+    desktop:w-[600px]
+    z-10
+    bg-transparent;
+  }
+  .sl-header-search-predictive {
+    @apply flex items-center absolute top-6 left-6 tablet:left-10 right-6 tablet:right-[300px] bottom-6 z-0 text-[#c9c9c9] h-12 tablet:h-auto
+    border-b border-transparent
+    tablet:text-section-header-h2 tablet:font-semibold;
+  }
+  .sl-header-search-action {
+    @apply 
+    items-center
+    justify-end
+    h-[48px] 
+    mobile:h-auto
+    absolute
+    z-10
+    right-[25px]
+    mobile:right-0
+    mobile:relative
+    flex;
+  }
+
+  .sl-header-search-btn {
+    @apply h-[52px]
+    bg-singlife-red
+    text-white
+    py-1
+    px-12
+    items-center
+    whitespace-nowrap
+    rounded-button 
+    text-base 
+    font-semibold 
+    justify-center 
+    tracking-[0.08em]
+    hidden
+    tablet:block;
+  }
+
+  .sl-header-search-close {
+    @apply flex 
+    max-w-[50px]
+    w-[50px]
+    items-center
+    justify-end;
+  }
+
+  .sl-ses-header .sl-header-wrapper_container {
+    @apply justify-center;
+  }
+  .sl-ses-header .sl-header-logo {
+    @apply pr-0;
+  }
+}

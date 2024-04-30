@@ -1,0 +1,9 @@
+extends ../../../templates/_component
+
+block append variables
+  - path = '../../../../'
+  - classes = ''
+
+block append content
+  +component("title-and-desc")
+    +title-and-desc("What is Singlife Shield Starter and Health Plus Starter?", "Singlife Shield Starter and Health Plus Starter is an affordable Integrated Shield Plan (IP) and rider that protects you against unexpected hospital bills and minimises your out-of-pocket expenses.")

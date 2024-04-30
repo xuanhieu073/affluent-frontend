@@ -1,0 +1,51 @@
+@layer components {
+  .affluent-hero {
+    @apply relative;
+    &_bg {
+      img {
+        @apply w-full;
+      }
+      .for-desktop {
+        @apply hidden mobile:block;
+      }
+      .for-mobile {
+        @apply block mobile:hidden;
+      }
+    }
+    &_content {
+      @apply absolute flex flex-col gap-2 tablet:gap-4 top-[14.4876%] mobile:top-[17.67857%] w-[min(100%-48px,1200px)] left-1/2 -translate-x-1/2 font-sourcesans3 text-black;
+    }
+    &_title {
+      p {
+        @apply text-[24px] leading-[1.07] font-light tablet:text-[48px];
+        b {
+          @apply font-bold;
+        }
+      }
+    }
+    &_desc {
+      p {
+        @apply text-[14px] leading-[20px] font-normal tablet:text-[17px] tablet:leading-[24px];
+      }
+    }
+    &_pagination {
+      @apply absolute top-[108px] tablet:top-[190px] flex opacity-0 mobile:opacity-100;
+      &-item {
+        @apply w-[47px] h-[15px] cursor-pointer relative;
+        &.dot-active {
+          .affluent-hero_pagination-dot {
+            @apply bg-sl-affluent-beige-100;
+          }
+        }
+        &:hover {
+          .affluent-hero_pagination-dot {
+            @apply inset-1;
+          }   
+        }
+      }
+      &-dot {
+        @apply absolute inset-[6px] rounded-full bg-white transition-all;
+      }
+    }
+  }
+}

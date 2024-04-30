@@ -1,0 +1,40 @@
+mixin footer
+  footer.footer
+    .container.max-w-6xl.mx-auto.flex.items-center.px-2.py-8
+      .w-full.mx-auto.flex.flex-wrap.items-center
+        .flex.w-full.pt-2.content-center.justify-between.hidden.md_block.lg_block.xl_block.pb-3
+          ul.list-reset.flex.justify-center.items-center.text-sm
+            li.border-solid.border-l.border__color__tertiary
+              a.inline-block.text__color__tertiary.no-underline.px-3(href='#') HOME
+            li.border-solid.border-l.border__color__tertiary
+              a.inline-block.text__color__tertiary.no-underline.px-3(href='#') SEARCH
+            li.border-solid.border-l.border__color__tertiary
+              a.inline-block.text__color__tertiary.no-underline.px-3(href='#') MENTAR
+            li.border-solid.border-l.border__color__tertiary
+              a.inline-block.text__color__tertiary.no-underline.px-3(href='#') Q&A
+            li.border-solid.border-l.border__color__tertiary
+              a.inline-block.text__color__tertiary.no-underline.px-3(href='#') About Us
+            li.border-solid.border-l.border__color__tertiary
+              a.inline-block.text__color__tertiary.no-underline.px-3(href='#') Law
+            li.border-solid.border-l.border__color__tertiary
+              a.inline-block.text__color__tertiary.no-underline.px-3(href='#') User Guide
+            li.border-solid.border-l.border-r.border__color__tertiary
+              a.inline-block.text__color__tertiary.no-underline.px-3(href='#') Privacy Policy
+        .flex.w-full.justify-center.pb-3
+          ul.list-reset.flex.justify-center.items-center
+            li.px-1
+              i.fab.fa-facebook-square.fa-2x
+              a(href='#')
+            li.px-1
+              i.fab.fa-twitter-square.fa-2x
+              a(href='#')
+            li.px-1
+              i.fab.fa-google-plus-square.fa-2x
+              a(href='#')
+            li.px-1
+              i.fab.fa-instagram.fa-2x
+              a(href='#')
+        .flex.w-full.justify-center.text-white.text-sm.pb-3
+            span © 2017 Masaki Yoshiiwa
+
++footer()

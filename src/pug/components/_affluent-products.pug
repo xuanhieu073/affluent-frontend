@@ -1,0 +1,10 @@
+mixin affluent-products
+  .affluent-products(x-data="affluent_products_grid")
+    .affluent-products_grid
+      +affluent-card-medium("RETIREMENT PLANNING", "Singlife Flexi-Retirement II", "Approach your retirement years with confidence and freedom.", ["Tailor how you’d want your Guaranteed Monthly Income", "100% Capital Guaranteed", "Flexibility to reinvest your monthly payouts"])
+      +affluent-card-medium("RETIREMENT PLANNING", "Singlife Flexi Life Income II", "Enjoy yearly payouts, a money-back guarantee and more earnings over time.",["Enjoy yearly cash payouts without working","100% Capital Guaranteed","Be financially protected against Death and Terminal Illness"])
+      +affluent-card-medium("WEALTH ACCUMULATION", "Singlife Elite Term", "Your choice of cover duration", ["Your choice of cover duration","Provide your loved ones with a lump-sum payout upon death or terminal illness","Flexibility to increase your basic cover without underwriting"])
+      +affluent-card-medium("WEALTH ACCUMULATION", "Singlife Savvy Invest", "Ignite your financial growth with strategies that match your ambitions. ", ["Flexibility to choose from multiple funds", "Increase your investment any time", "Pass it on to your family as a legacy gift"])
+      +affluent-card-medium("WEALTH ACCUMULATION", "Singlife Savvy Invest", "Ignite your financial growth with strategies that match your ambitions. ", ["Flexibility to choose from multiple funds", "Increase your investment any time", "Pass it on to your family as a legacy gift"])
+    .affluent-products_loadmore(x-ref="loadMore")
+      button(@click="toggleShowAll()" x-text="showAll ? 'Load less' : 'Load more'")

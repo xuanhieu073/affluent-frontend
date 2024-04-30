@@ -1,0 +1,32 @@
+@layer utilities {
+  .affluent-standfirst {
+    &_header {
+      P {
+        @apply text-[18px] mobile:text-card-header-h1 mb-4 text-center font-light underline-offset-[3px];
+        b {
+          @apply font-semibold;
+        }
+        a {
+          @apply text-inherit underline;
+        }
+      }
+    }
+    &_subheader {
+      p {
+        @apply text-[14px] tablet:text-base font-normal text-center text-white/70 underline-offset-[3px];
+        a {
+          @apply text-inherit underline;
+        }
+      }
+    }
+    &_cta {
+      @apply flex items-center justify-center mt-6 mobile:mt-12;
+      .affluent-button_primary {
+        @apply px-4;
+      }
+    }
+    .text-beige {
+      @apply text-sl-affluent-beige underline-offset-[4px];
+    }
+  }
+}

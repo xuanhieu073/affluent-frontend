@@ -1,0 +1,158 @@
+@layer components {
+  .margin-option {
+    @apply mb-[length:var(--mobile-mb)] mobile:mb-[length:var(--desktop-mb)];
+  }
+  .affluent-card {
+    &_bg {
+      border: 1px solid
+        var(--SL-Primary-Button-Border, rgba(242, 227, 199, 0.15));
+      background: var(
+        --SL-Primary-Button-Linear,
+        linear-gradient(
+          151deg,
+          rgba(224, 224, 224, 0.19) 0.84%,
+          rgba(255, 255, 255, 0) 109.48%
+        )
+      );
+    }
+    &_large {
+      @apply rounded-2xl flex flex-col mobile:flex-row items-center mobile:items-stretch overflow-hidden;
+      .affluent-button_primary {
+        @apply px-[13.5px] py-[13px] mobile:px-[34.5px];
+      }
+      &.reverse {
+        @apply mobile:flex-row-reverse;
+        .affluent-card_img-container {
+          @apply flex mobile:w-[42%] tablet:w-[30.5%];
+        }
+        .affluent-card_img {
+          @apply mobile:mr-0 mobile:-ml-6
+        }
+      }
+    }
+    &_with-image {
+      @apply flex flex-col items-start gap-0 px-4 pt-8 pb-6 mobile:py-10 mobile:pl-10 mobile:pr-[54px] flex-1;
+    }
+    &_eyebrow {
+      @apply inline-block px-2 py-1 mobile:px-4 mobile:py-2 text-black rounded-full bg-sl-affluent-beige-100 font-normal text-[12px] mobile:text-[16px] mb-4 mobile:mb-8;
+      b {
+        @apply font-semibold;
+      }
+    }
+    &_content {
+      @apply mb-6 mobile:mb-8;
+    }
+    &_header {
+      @apply flex flex-col gap-2 mobile:gap-4 pb-4;
+    }
+    &_title {
+      p {
+        @apply text-[18px] mobile:text-[28px] leading-[30px] font-light;
+        b {
+          @apply font-medium;
+        }
+      }
+    }
+    &_desc {
+      p {
+        @apply text-[14px] mobile:text-[16px] leading-[1.5] text-white/70 font-normal;
+      }
+    }
+    &_list {
+      @apply pt-6 flex flex-col gap-4 mobile:gap-6 border-solid border-t border-white/20;
+    }
+    &_item {
+      @apply flex gap-3 items-start;
+      p {
+        @apply text-[14px] text-white/90 mobile:text-white mobile:text-base leading-[19px] mobile:leading-[30px] tracking-[0.2px]; 
+      }
+      img {
+        @apply flex-shrink-0 w-4 mobile:w-[21px] mt-[1px] mobile:mt-[7px];
+      }
+    }
+    &_cta {
+      @apply flex gap-6 items-center;
+    }
+    &_img {
+      @apply flex-shrink-0 mobile:mt-auto mobile:-mr-6 min-w-[40px] min-h-[40px];
+    }
+
+    //medium card
+    &_medium {
+      @apply flex flex-col rounded-2xl px-4 mobile:px-8 py-6 mobile:py-10;
+      .affluent-card_eyebrow {
+        @apply bg-transparent text-grey-300/70 text-[12px] mobile:text-[14px] leading-[30px] font-normal p-0 mb-2;
+      }
+      &-title {
+        @apply relative text-[18px] mobile:text-[20px] leading-[30px] text-sl-affluent-beige-200 font-normal;
+      }
+      &-desc {
+        @apply relative text-[14px] leading-[21px] font-normal text-white/70;
+
+        .textctn {
+          @apply text-[14px];
+        }
+      }
+      .textctn {
+        @apply static mobile:absolute top-0 left-0 z-[1];
+      }
+      .reservespc {
+        @apply hidden mobile:block opacity-0 select-none;
+      }
+      .affluent-card_header {
+        @apply pb-2;
+      }
+      .affluent-card_item {
+        @apply text-[14px] leading-[21px] font-normal;
+        p {
+          @apply text-[14px] leading-[21px] font-normal;
+        }
+        img {
+          @apply w-4 mt-[2.5px];
+        }
+      }
+      .affluent-card_cta {
+        @apply mt-auto;
+        .affluent-button_primary {
+          @apply text-[14px] leading-[1.2] font-medium px-6 mobile:px-4 py-[12.5px] mobile:py-[11px];
+        }
+      }
+    }
+
+    &_image {
+      @apply rounded-[10px] mobile:rounded-2xl overflow-hidden flex flex-col;
+      &-container {
+        @apply h-[88px] mobile:h-[172px];
+        img {
+          @apply w-full h-full object-cover;
+        }
+      }
+      &-content {
+        @apply p-2 mobile:p-4 flex-1 flex flex-col justify-between;
+      }
+      &-title {
+        @apply text-[12px] leading-[16px] mobile:text-[18px] mobile:leading-[22px] font-normal mb-2 mobile:mb-[54px];
+      }
+      &-readmore {
+        @apply flex gap-x-[3px] mobile:gap-x-[6px] text-[12px] mobile:text-[14px] items-center text-sl-affluent-beige-200 font-semibold leading-[1];
+        img {
+          @apply w-[10px] mobile:w-[20px];
+        }
+      }
+    }
+
+    //icon card
+    &_icon-list {
+      @apply flex flex-col items-center mobile:flex-row justify-center flex-wrap gap-x-6 gap-y-10 mobile:gap-y-14;
+    }
+    &_icon {
+      @apply flex flex-col gap-y-4 items-center w-[187px] h-[84px] mobile:w-[231px] mobile:h-[146px] justify-self-center;
+      &-img {
+        @apply w-[42px] mobile:w-[64px];
+      }
+      &-desc {
+        @apply text-[14px] mobile:text-[18px] text-[#FAFAFA] leading-[1.2] text-center;
+      }
+    }
+  }
+}

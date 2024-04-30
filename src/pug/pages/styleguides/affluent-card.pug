@@ -1,0 +1,9 @@
+extends ../../templates/_component
+
+block append content
+  +component("affluent-card")
+    h1 affluent card icon
+    +affluent-card_icon-list()
+    h1 affluent card large
+    +affluent-card-large("Singlife Legacy <b>Indexed Universal Life</b>", "Your legacy is more than just assets – it’s the impact you leave behind. Let us help you craft a legacy plan that ensures your values and achievements truly last.", ["Grow your money while staying protected", "Lorem ipsum dolor sit amet consectetur adipisicing elit.", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit."])
+    h1 affluent card medium

@@ -1,0 +1,21 @@
+@layer components {
+  .affluent-fullwidth-banner {
+    &_container {
+      @apply relative h-[560px] relative text-black;
+    }
+    &_bg {
+      @apply absolute inset-0 -z-10;
+      img {
+        @apply w-full h-full object-cover;
+      }
+    }
+    &_header {
+      @apply pt-[100px] max-w-[min(1200px,100%-48px)] mx-auto      
+    }
+    &_footer {
+      @apply h-[103px] absolute bottom-0 w-full;
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(12px);
+    }
+  }
+}

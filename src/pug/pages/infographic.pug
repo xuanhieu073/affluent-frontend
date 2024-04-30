@@ -1,0 +1,20 @@
+extends ../templates/_layout
+include ../layouts/_header
+
+block variables
+  -
+    var appId = 'Infographic';
+    var title = 'Infographic Page';
+    var description = 'Description: This page is top page.';
+    var classes = 'none'
+
+block content
+  +title-and-desc("What is Singlife Shield Starter and Health Plus Starter?", "Singlife Shield Starter and Health Plus Starter is an affordable Integrated Shield Plan (IP) and rider that protects you against unexpected hospital bills and minimises your out-of-pocket expenses.")
+  +infographic-card
+  +affluent-spacer(80, 180)
+  +title-and-desc("What you'll need to pay if you are hospitalised", "Reduce your out-of-pocket expenses on your hospital bill with just S$1.00* add-on to your Shield plan.")
+  +infographic-chart
+  +infographic-products
+  a(href="foo") hovertoshowtooltip
+  div(id="foo") this is tooltip
+  +affluent-spacer(80, 1800 )

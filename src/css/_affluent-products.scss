@@ -1,0 +1,10 @@
+@layer components {
+  .affluent-products {
+    &_grid {
+      @apply grid grid-cols-1 mobile:grid-cols-2 gap-4 mobile:gap-6 ;
+    }
+    &_loadmore {
+      @apply text-sl-affluent-beige-200 text-[14px] leading-[1.2] font-semibold underline mt-16 flex justify-center;
+    }
+  }
+}

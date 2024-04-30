@@ -1,0 +1,17 @@
+@layer components {
+  .affluent-featured-articles {
+    @apply flex flex-col gap-6 mobile:gap-16;
+    &_title {
+      @apply text-[18px] mobile:text-[32px] font-light text-center;
+      b {
+        @apply font-semibold;
+      }
+    }
+    &_list {
+      @apply grid grid-cols-2 mobile:grid-cols-3 gap-x-2 gap-y-4 mobile:gap-6;
+    }
+    &_all {
+      @apply text-sl-affluent-beige-200 text-[14px] leading-none font-semibold underline underline-offset-[3px] text-center block;
+    }
+  }
+}
