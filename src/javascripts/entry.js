@@ -10,6 +10,7 @@ import "./affluent-hero";
 import "./affluent-leadin-section";
 import "./affluent-contact-form";
 import "./affluent-sign-up";
+import "./infographic";
 
 Alpine.start()
 

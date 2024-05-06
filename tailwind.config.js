@@ -90,6 +90,7 @@ module.exports = {
         "singlife-purple-100": "#B474B0", //- rgb(180,116,176)
         "singlife-purple-200": "#783780", //- rgb(120,55,128) //+banner
         "singlife-purple-400": "#F2E6F1", //- rgb(242,230,241)
+        "singlife-purple-500": "#EDD8EE", //- rgb(242,230,241)
         "singlife-blue": "#2b5888", //- rgb(43,88,136)
         "singlife-blue-100": "#588ed5", //- rgb(88,142,213) //+banner
         "singlife-blue-200": "#001898",
@@ -97,6 +98,7 @@ module.exports = {
         "singlife-blue-400": "#e3f2fd", //- rgb(227,242,253)
         "singlife-blue-500": "#19D3C5",
         "singlife-blue-600": "#004FB6",
+        "singlife-blue-700": "#F4F6F9",
         "singlife-orange": "#f47815", //- rgb(244,120,21)
         "singlife-orange-200": "#fff7f7", //- rgb(255,247,247)
         "singlife-orange-300": "#ffa168", //- rgb(255,161,104)

@@ -1,24 +1,47 @@
-mixin infographic-product-card 
-  .infographic-product_card
-    .flex.mb-4
+mixin infographic-product-card(id)
+  label(for=id).infographic-product_card(:class=`selectedPlan === '${id}' ? 'bg-singlife-purple-500' : 'bg-singlife-blue-700'`)
+    .flex.mb-4.justify-between
       h4(class="text-singlife-purple font-semibold text-[18px]") Singlife Shield Starter
-      button
+      input.infographic-input(type="radio" value=id id=id name="infographic-group" x-model="selectedPlan")
     .px-2.py-2.mb-2
       p(class="text-[14px] leading-[1.4] font-medium text-grey") As-charged coverage of up to S$20,000/year at preferred medical providers
     .flex.bg-white.rounded-md.mb-6.p-2
       button
-      div(class="text-[14px] leading-[1.4] font-medium text-grey") 
+      div(class="text-[14px] leading-[1.4] font-medium text-grey" x-data="toolipPopover") 
         | Your out-of-pocket payment is capped at 
-        span(class="text-singlife-purple") S$3,500 for the deductibles plus 10% of the remaining hospital 
+        span(class="text-singlife-purple")
+          a(href="#tooltippov") S$3,500 for the deductibles plus 10% of the remaining hospital 
         | bill
     .flex.justify-between
       p Premium Payable
       span S$300.00
 
-
-
 mixin infographic-products
   .flex.gap-6.justify-center
-    +infographic-product-card
-    +infographic-product-card
-    
+    +infographic-product-card("starter-plus")
+    +infographic-product-card("starter")
+
+mixin infographic
+  div(x-data="infographic")
+    +title-and-desc("What you'll need to pay if you are hospitalised", "Reduce your out-of-pocket expenses on your hospital bill with just S$1.00* add-on to your Shield plan.")
+    +infographic-chart('starter-plus')
+    +infographic-products
+    div(@click="showTooltip('yllpaypov','youWillpayRatio')") tooltip
+  <div popover id="sllpaypov" class="popover-tooltip pb-[14px]">
+    <div class="popover-tooltip_content p-6 rounded-2xl bg-grey text-white max-w-[407px]">
+      h6 Singlife will pay
+      p For preferred medical providers, Singlife will cover the remaining amount, up to S$20,000, after deducting the 5% co-insurance. For non-preferred medical providers, Singlife's coverage will be reduced by 50% (i.e., from 95% to 48%).
+    </div>
+  </div>
+  <div popover id="yllpaypov" class="popover-tooltip right-align pb-[14px]">
+    <div class="popover-tooltip_content p-6 rounded-2xl bg-grey text-white max-w-[407px]">
+      h6 Singlife will pay
+      p For preferred medical providers, Singlife will cover the remaining amount, up to S$20,000, after deducting the 5% co-insurance. For non-preferred medical providers, Singlife's coverage will be reduced by 50% (i.e., from 95% to 48%).
+    </div>
+  </div>
+  <div popover id="tooltippov" class="popover-tooltip right-align pb-[14px]">
+    <div class="popover-tooltip_content p-6 rounded-2xl bg-grey text-white max-w-[407px]">
+      h6 Singlife will pay
+      p For preferred medical providers, Singlife will cover the remaining amount, up to S$20,000, after deducting the 5% co-insurance. For non-preferred medical providers, Singlife's coverage will be reduced by 50% (i.e., from 95% to 48%).
+    </div>
+  </div>
