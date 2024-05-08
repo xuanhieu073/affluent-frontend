@@ -6,8 +6,9 @@
 @import "tailwindcss/utilities";
 @import "tailwindcss/components";
 
-@import "./header.scss";
+@import "./custom-classes";
 
+@import "./header.scss";
 @import "./common/_affluent-button.scss";
 @import "./affluent-header.scss";
 @import "./affluent-hero.scss";

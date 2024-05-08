@@ -1,0 +1,45 @@
+mixin flip-card-with-tooltip(id, type, title, description, backDescription, image, imageList, backDescriptionList, className = [])
+  .sl-flip-cards-item.group(class=`card-id${id}` class=type == 'brandstory' ? 'brandstory' : '' x-data="{ cardHover: false, mobileHover: false }",
+  :class="{ 'sl-flip-cards-item_mobile-hover' : mobileHover }" 
+  @mouseover=`cardHover=true`,
+  @click=`
+    if (window.innerWidth < 628) {
+      const CARD_WIDTH = 282;
+      let cards = document.getElementById($data.flipId);
+      let clickarea = ((window.innerWidth - CARD_WIDTH) / 2) + CARD_WIDTH;
+      let difference = $el.offsetLeft - cards.scrollLeft;
+      //- console.log('cards',cards.scrollLeft, 'el', $el.offsetLeft, 'remain', difference, 'clickarea', clickarea);
+      if (difference > clickarea || difference < 0) {
+        cards.scrollTo({ top: 0, left: $el.offsetLeft, behavior: 'smooth'});
+      } else {
+        mobileHover = !mobileHover;
+      }
+    }
+  `)&attributes(attributes)
+    if type != 'static' && type != 'brandstory'
+      .sl-flip-cards-border(:class="{ 'fadeOut': cardHover }")
+    .sl-flip-cards-item_inner
+      .sl-flip-cards-item_front
+        .sl-flip-cards-item_img
+            img(src=path+"assets/icons/"+image, alt="")
+        h3.sl-flip-cards-item_title= title 
+        p.sl-flip-cards-item_description(x-data="toolipPopover")
+          span(class="text-singlife-purple font-semibold")
+            a(href="#tooltippov") Co-payment 
+          | will be reduced to just 5%1 of the hospital bills when you add-on Singlife Health Plus Starter2.
+
+mixin flip-cards(type)
+  .sl-flip-cards.sl-filp-card-no-slider.sl-flip-cards-static&attributes(attributes)
+    .sl-flip-cards-guide
+      p Flip the cards to find out more
+        img(src=path+"assets/icons/sl-icon-guide-arrow.svg", alt="")
+    .sl-flip-cards-wrapper(x-data="{ flipId: $id('flip-cards') }")
+      .sl-flip-cards-container(data-item="8", :id="flipId")
+        .sl-flip-cards-item.sl-flip-cards-item_blank
+            .sl-flip-cards-item_inner
+        +flip-card-with-tooltip(1, type, "Welcome", +texts, "Our Life Stage Benefit celebrates your new milestones in life!", "sl-icon-handshake.svg")
+        +flip-card-with-tooltip(2, type, "We've got you", "Our Life Stage Benefit celebrates your new milestones in life!", "Our Life Stage Benefit celebrates your new milestones in life!", "sl-icon-man-coin.svg")
+        +flip-card-with-tooltip(3, type, "Support that matters", "We’ll pay the sum assured if you pass on, become terminally ill or are diagnosed with total and permanent disability", "Our Life Stage!", "sl-icon-hand-shield.svg")
+        .sl-flip-cards-item.sl-flip-cards-item_blank
+            .sl-flip-cards-item_inner
+      

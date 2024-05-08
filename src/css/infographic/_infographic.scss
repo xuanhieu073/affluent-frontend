@@ -1,20 +1,70 @@
 @layer components {
   .infographic {
+    &-note {
+      @apply text-label font-medium;
+    }
     &-product {
+      &s {
+        @apply flex flex-col mobile:flex-row gap-6 justify-center mb-6;
+      }
       &_card {
-        @apply p-6 rounded-3xl w-[324px] hover:drop-shadow-xl transition-all duration-200;
+        @apply relative p-6 rounded-3xl mobile:max-w-[324px] hover:drop-shadow-xl transition-all duration-200 cursor-pointer flex flex-col;
+        &-highlight {
+          @apply absolute top-0 -translate-y-1/2 left-6 rounded-lg bg-singlife-purple text-white font-semibold text-label tracking-[0.04em] inline-block px-2 py-1;
+        }
+        &-header {
+          @apply flex gap-4 mb-4 justify-between;
+        }
+        &-heading {
+          @apply text-singlife-purple font-semibold text-[18px];
+        }
+        &-desc {
+          @apply px-2 py-2 mb-2 text-[14px] leading-[1.4] font-medium text-grey;
+        }
+        &-feature-text {
+          @apply flex bg-white rounded-lg mb-6 p-2 gap-2 items-start;
+          &-text {
+            @apply text-[14px] leading-[1.4] font-medium text-grey;
+          }
+        }
+        &-footer {
+          @apply flex justify-between items-center text-grey mt-auto;
+          p {
+            @apply text-label font-semibold;
+          }
+          span {
+            @apply text-base font-semibold tracking-[0.015em];
+          }
+        }
+      }
+    }
+    &-chart {
+      &_ratio {
+        @apply absolute z-10 bg-white drop-shadow-lg aspect-square rounded-full w-[64px] mobile:w-[100px] flex flex-col items-center justify-center;
+      }
+      &_singlife-ratio {
+        @apply top-1 left-20;
+        &_ratio {
+          @apply text-center text-singlife-red-400 text-[16px] mobile:text-[34px] leading-none font-bold;
+        }
+        &_text {
+          @apply text-center text-[8px] mobile:text-label font-semibold text-grey;
+        }
+      }
+      &_you-ratio {
+        @apply bottom-1 right-1 transition-all duration-300;
       }
     }
     &-input {
       @apply flex-shrink-0 w-6 h-6 border border-grey-1200 bg-no-repeat bg-center appearance-none cursor-pointer;
       &[type="radio"] {
-        @apply bg-white rounded-full border-singlife-purple;
+        @apply bg-white rounded-full border-grey-1200;
       }
       &:checked {
         &[type="radio"] {
           @apply bg-white relative;
           &:after {
-            content: '';
+            content: "";
             @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[15px] h-[15px] rounded-full bg-singlife-purple;
           }
         }
@@ -25,24 +75,41 @@
     --top: 0;
     --left: 0;
     --pointer: 22px;
-    position: absolute;
-    background: transparent;
-    top: var(--top);
-    left: var(--left);
+    @apply top-auto bottom-0 left-0 right-0;
+    @apply mobile:absolute bg-transparent mobile:top-[var(--top)] mobile:left-[var(--left)] mobile:pb-[14px];
+    &::backdrop {
+      @apply mobile:hidden bg-black/70;
+    }
+    &:before {
+      content: "";
+      @apply mobile:hidden absolute top-1 left-1/2 -translate-x-1/2 w-20 h-1 rounded-full bg-grey;
+    }
     &:after {
+      @apply hidden mobile:block;
       content: "";
       position: absolute;
-      bottom: 0;
+      bottom: 1px;
       left: var(--pointer);
       width: 22px;
       height: 14px;
       background: #434343;
-      clip-path: path('M12.5726 11.9985C11.7719 13.0176 10.2281 13.0176 9.42735 11.9985L6.8343e-07 1.59523e-08L4.50001 -3.77451e-07L19 2.62268e-07L22 0L12.5726 11.9985Z');
+      clip-path: path(
+        "M12.5726 11.9985C11.7719 13.0176 10.2281 13.0176 9.42735 11.9985L6.8343e-07 1.59523e-08L4.50001 -3.77451e-07L19 2.62268e-07L22 0L12.5726 11.9985Z"
+      );
     }
     &.right-align {
       --right: 0;
       left: auto;
       right: var(--right);
+    }
+    &_content {
+      @apply p-8 mobile:p-6 rounded-tl-2xl rounded-tr-2xl mobile:rounded-2xl bg-white mobile:bg-grey text-grey mobile:text-white mobile:max-w-[407px];
+    }
+    &_header {
+      @apply text-[18px] leading-[1.4] tracking-[0.015em] font-semibold mb-2;
+    }
+    &_body {
+      @apply text-[14px] leading-[1.4] font-medium;
     }
   }
 }

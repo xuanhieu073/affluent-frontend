@@ -1,27 +1,10 @@
 @layer components {
   .infographic {
     &_title {
-      @apply text-singlife-purple font-semibold text-section-header-h1 text-center mb-5;
+      @apply text-singlife-purple font-semibold text-section-header-h2 mobile:text-section-header-h1 text-center mb-5;
     }
     &_desc {
-      @apply text-grey font-medium text-[20px] text-center mb-8;
-    }
-    &_card {
-      &-listing {
-        @apply flex gap-6 justify-center;
-      }
-      &-item {
-        @apply flex flex-col items-center px-2 py-[10px];
-      }
-      &-title {
-        @apply flex items-center justify-center bg-[#01704A] w-[152px] h-[85px] rounded-2xl text-white mb-5;
-      }
-      &-desc {
-        @apply text-center w-[164px];
-      }
-      &-plus {
-        @apply text-[64px] font-semibold
-      }
+      @apply text-grey font-medium text-base mobile:text-[20px] text-center mb-8;
     }
   }
 }

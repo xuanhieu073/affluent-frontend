@@ -1,14 +1,15 @@
 mixin infographic-chart(nextstate)
-  div(class="w-[500px] mx-auto mb-[82px] h-[224px] relative overflow-hidden p-2")
-    div(x-ref="sinlifeWillpayRatio" class="sinlife-willpay-ratio absolute top-1 left-6 z-10 bg-white drop-shadow-lg aspect-square rounded-full w-[100px] flex flex-col items-center justify-center")
-      p.text-center.text-singlife-red-400(class="text-[34px] leading-none font-bold" x-text="sllpay + '%'")
-      p.text-center(class="text-label font-semibold text-grey") Sinlife will pay
-    div(x-ref="youWillpayRatio" class="absolute z-10 bg-white drop-shadow-lg aspect-square rounded-full w-[100px] flex flex-col items-center justify-center transition-all duration-300" 
+  div(class="w-[327px] mobile:w-[532px] mx-auto mb-[82px] h-[150px] mobile:h-[224px] relative overflow-hidden p-2")
+    div(x-ref="sinlifeWillpayRatio" class="infographic-chart_ratio infographic-chart_singlife-ratio")
+      p.infographic-chart_singlife-ratio_ratio(x-text="sllpay + '%'")
+      p.infographic-chart_singlife-ratio_text Singlife will pay
+    //- div(x-ref="youWillpayRatio" class="absolute z-10 bg-white drop-shadow-lg aspect-square rounded-full w-[56px] mobile:w-[100px] flex flex-col items-center justify-center" 
+    div(x-ref="youWillpayRatio" class="infographic-chart_ratio infographic-chart_you-ratio" 
       :class=`selectedPlan === '${nextstate}' ? 'bottom-1 right-1' : 'bottom-20 right-12'`)
-      p.text-center.text-singlife-teal-100(class="text-[34px] leading-none font-bold" x-text="yllpay + '%'")
-      p.text-center(class="text-label font-semibold text-grey") You will pay
+      p.infographic-chart_singlife-ratio_ratio.text-singlife-teal-100(x-text="yllpay + '%'")
+      p.infographic-chart_singlife-ratio_text You will pay
     //- img.absolute.top-2.left-2(class="w-[432px] h-[432px] transition-transform duration-300" :class=`selectedPlan === '${nextstate}' && 'rotate-[66.6deg]'` src=path+"assets/icons/infographic/donut.svg", alt="")
-    div.absolute.top-2.left-2(class="w-[432px] h-[432px] transition-transform duration-300" :class=`selectedPlan === '${nextstate}' && 'rotate-[66.6deg]'`)
+    div.absolute.top-2(class="left-1/2 -translate-x-1/2 w-[285px] h-[285px] mobile:w-[432px] mobile:h-[432px] transition-transform duration-300" :class=`selectedPlan === '${nextstate}' && 'rotate-[66.6deg]'`)
       | <svg viewBox="0 0 453 452" fill="none" xmlns="http://www.w3.org/2000/svg">
       |   <g @mouseover="showTooltip('sllpaypov', 'sinlifeWillpayRatio')" @mouseleave="hideTooltip('sllpaypov')" filter="url(#filter0_d_133_318)">
       |     <path fill-rule="evenodd" clip-rule="evenodd"
