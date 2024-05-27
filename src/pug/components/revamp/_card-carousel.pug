@@ -1,0 +1,39 @@
+mixin tag(name)
+  .sl-tag&attributes(attributes)
+    span!=name
+
+mixin card-left-content(link)
+  .sl-card-left-content.overflow-hidden&attributes(attributes)(
+    x-data="cardLeftContent",
+    data-url=link,
+    x-ref="card",
+    @click=`clickCard('')`
+  )
+    .sl-card-left-content_left
+      .sl-card-left-content_tags
+        +tag("INSURANCE").sl-tag-grey
+      p.sl-card-left-content_title
+        | MyLongTermCare, MyLongTermCare plus
+      p.sl-card-left-content_subtitle
+        | Enhance your Careshield life or Eldershield coverage today! 
+      +secondary-button("Learn More").sl-card-left-content_button(@click="goto('_blank')")
+    .sl-card-left-content_right
+      img(lazy-src="../../assets/images/revamp/card-background-1.png")
+
+mixin card-left-content-carousel
+  .sl-cards-overlap-wrapper
+    .card-content-left-carousel-container(
+      x-data="cardCarousel"
+    )&attributes(attributes)
+      .sl-card-heading
+        p Enjoy greater 
+          span.text-singlife-purple-200 cost savings
+      .swiper-container(x-ref="containerCardLefts")
+        .swiper-wrapper
+          .swiper-slide
+            +card-left-content('#0')(class="sl-card-left-content_theme-pink")
+          .swiper-slide
+            +card-left-content('#1')(class="sl-card-left-content_theme-blue")
+          .swiper-slide
+            +card-left-content('#2')(class="sl-card-left-content_theme-pink")
+        .swiper-pagination(x-show="swiper.slides.length > 1")

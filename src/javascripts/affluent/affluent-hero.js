@@ -3,7 +3,7 @@ import Swiper from "swiper";
 // import Swiper styles
 import "swiper/css";
 
-import { lazyLoadImage } from "../javascripts/lazy-load-image";
+import { lazyLoadImage } from "../lazy-load-image";
 
 document.addEventListener("alpine:init", () => {
   Alpine.data("affluent_hero", () => ({

@@ -1,31 +1,4 @@
-function throttle(callback, limit) {
-  var wait = false; // Initially, we're not waiting
-  return function () {
-    // We return a throttled function
-    if (!wait) {
-      // If we're not waiting
-      callback.call(); // Execute users function
-      wait = true; // Prevent future invocations
-      setTimeout(function () {
-        // After a period of time
-        wait = false; // And allow future invocations
-      }, limit);
-    }
-  };
-}
-
 document.addEventListener("alpine:init", () => {
-  Alpine.store("delaydes", {
-    on: false,
-
-    toggle(value) {
-      this.on = value;
-    },
-    desTooltipByStore(id) {
-      const targetTooltip = document.getElementById(id);
-      targetTooltip.hidePopover();
-    },
-  });
   Alpine.data("infographic", () => ({
     selectedPlan: "starter-plus",
     yllpay: 5,

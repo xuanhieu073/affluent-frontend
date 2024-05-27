@@ -1,0 +1,32 @@
+@layer components {
+  .parsys {
+    &_card {
+      &-listing {
+        @apply flex flex-col mobile:flex-row mobile:gap-6 justify-center items-center mobile:items-stretch;
+        .symbols {
+          @apply text-[64px] leading-none font-semibold mobile:flex mobile:items-center;
+        }
+        .text-and-image-affluent {
+          @apply flex mobile:flex-col gap-x-5 items-center px-2 py-[10px] gap-y-5;
+        }
+        .new-item-reserve {
+          &.md {
+            @apply w-[164px];
+          }
+          &.sm {
+            @apply w-[64px];
+          }
+        }
+      }
+      &-title {
+        @apply flex items-center justify-center w-[152px] h-[85px] rounded-2xl text-white text-center text-base font-semibold;
+      }
+      &-desc {
+        @apply text-center w-[164px] text-base font-medium;
+      }
+      &-image {
+        @apply w-[152px] rounded-2xl;
+      }
+    }
+  }
+}
