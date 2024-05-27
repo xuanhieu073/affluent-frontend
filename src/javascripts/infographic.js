@@ -76,7 +76,17 @@ document.addEventListener("alpine:init", () => {
       targetTooltip.style.setProperty("--top", top + "px");
       targetTooltip.showPopover();
 
-      top -= targetTooltip.offsetHeight + 10;
+      if (elemRect.top < targetTooltip.clientHeight) {
+        top = this.$refs.chart.getBoundingClientRect().top - bodyRect.top;
+        top += this.$refs.chart.offsetHeight;
+        targetTooltip.classList.remove("top-pointer");
+        targetTooltip.classList.add("bottom-pointer");
+      } else {
+        top -= targetTooltip.offsetHeight + 10;
+        targetTooltip.classList.remove("bottom-pointer");
+        targetTooltip.classList.add("top-pointer");
+      }
+
       targetTooltip.style.setProperty("--top", top < 0 ? 0 : top + "px");
 
       if (align) {
@@ -99,7 +109,7 @@ document.addEventListener("alpine:init", () => {
     },
     hideTooltip(id) {
       const targetTooltip = document.getElementById(id);
-      targetTooltip.hidePopover();
+      if (!this.$store.delaydes.on) targetTooltip.hidePopover();
     },
   }));
   Alpine.data("toolipPopover", () => ({
@@ -135,7 +145,16 @@ document.addEventListener("alpine:init", () => {
       targetTooltip.style.setProperty("--top", top + "px");
       targetTooltip.showPopover();
 
-      top -= targetTooltip.offsetHeight;
+      if (elemRect.top < targetTooltip.clientHeight) {
+        top += el.offsetHeight;
+        targetTooltip.classList.remove("top-pointer");
+        targetTooltip.classList.add("bottom-pointer");
+      } else {
+        top -= targetTooltip.offsetHeight;
+        targetTooltip.classList.remove("bottom-pointer");
+        targetTooltip.classList.add("top-pointer");
+      }
+
       targetTooltip.style.setProperty("--top", top < 0 ? 0 : top + "px");
     },
     desTooltip(id) {

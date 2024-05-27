@@ -75,8 +75,23 @@
     --top: 0;
     --left: 0;
     --pointer: 22px;
+    &.top-pointer {
+      @apply mobile:pb-[14px];
+      &:after {
+        bottom: 1px;
+        left: var(--pointer);
+      }
+    }
+    &.bottom-pointer {
+      @apply mobile:pt-[14px];
+      &:after {
+        top: 1px;
+        left: var(--pointer);
+        transform: rotate(180deg);
+      }
+    }
     @apply top-auto bottom-0 left-0 right-0;
-    @apply mobile:absolute bg-transparent mobile:top-[var(--top)] mobile:left-[var(--left)] mobile:pb-[14px];
+    @apply mobile:absolute bg-transparent mobile:top-[var(--top)] mobile:left-[var(--left)];
     &::backdrop {
       @apply mobile:hidden bg-black/70;
     }
@@ -88,8 +103,6 @@
       @apply hidden mobile:block;
       content: "";
       position: absolute;
-      bottom: 1px;
-      left: var(--pointer);
       width: 22px;
       height: 14px;
       background: #434343;
