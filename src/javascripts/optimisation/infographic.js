@@ -1,31 +1,4 @@
-function throttle(callback, limit) {
-  var wait = false; // Initially, we're not waiting
-  return function () {
-    // We return a throttled function
-    if (!wait) {
-      // If we're not waiting
-      callback.call(); // Execute users function
-      wait = true; // Prevent future invocations
-      setTimeout(function () {
-        // After a period of time
-        wait = false; // And allow future invocations
-      }, limit);
-    }
-  };
-}
-
 document.addEventListener("alpine:init", () => {
-  Alpine.store("delaydes", {
-    on: false,
-
-    toggle(value) {
-      this.on = value;
-    },
-    desTooltipByStore(id) {
-      const targetTooltip = document.getElementById(id);
-      targetTooltip.hidePopover();
-    },
-  });
   Alpine.data("infographic", () => ({
     selectedPlan: "starter-plus",
     yllpay: 5,
@@ -76,7 +49,17 @@ document.addEventListener("alpine:init", () => {
       targetTooltip.style.setProperty("--top", top + "px");
       targetTooltip.showPopover();
 
-      top -= targetTooltip.offsetHeight + 10;
+      if (elemRect.top < targetTooltip.clientHeight) {
+        top = this.$refs.chart.getBoundingClientRect().top - bodyRect.top;
+        top += this.$refs.chart.offsetHeight;
+        targetTooltip.classList.remove("top-pointer");
+        targetTooltip.classList.add("bottom-pointer");
+      } else {
+        top -= targetTooltip.offsetHeight + 10;
+        targetTooltip.classList.remove("bottom-pointer");
+        targetTooltip.classList.add("top-pointer");
+      }
+
       targetTooltip.style.setProperty("--top", top < 0 ? 0 : top + "px");
 
       if (align) {
@@ -100,49 +83,6 @@ document.addEventListener("alpine:init", () => {
     hideTooltip(id) {
       const targetTooltip = document.getElementById(id);
       targetTooltip.hidePopover();
-    },
-  }));
-  Alpine.data("toolipPopover", () => ({
-    init() {
-      const triggerEls = this.$root.querySelectorAll('[href^="#"]');
-      for (const triggerEl of triggerEls) {
-        const tooltipId = triggerEl.getAttribute("href").replace("#", "");
-        triggerEl.addEventListener("click", (e) => {
-          e.preventDefault();
-          this.hoverTooltip(tooltipId, triggerEl);
-          this.$store.delaydes.toggle(true);
-        });
-        triggerEl.addEventListener("mouseover", () => {
-          this.hoverTooltip(tooltipId, triggerEl);
-          this.$store.delaydes.toggle(true);
-        });
-        triggerEl.addEventListener("mouseleave", () => {
-          this.desTooltip(tooltipId);
-          this.$store.delaydes.toggle(false);
-        });
-      }
-    },
-    async hoverTooltip(id, el) {
-      const targetTooltip = document.getElementById(id);
-      const bodyRect = document.body.getBoundingClientRect();
-      const elemRect = el.getBoundingClientRect();
-      let top = elemRect.top - bodyRect.top + 2;
-      let left = 0;
-
-      left = elemRect.left;
-      targetTooltip.style.setProperty("--left", left + "px");
-
-      targetTooltip.style.setProperty("--top", top + "px");
-      targetTooltip.showPopover();
-
-      top -= targetTooltip.offsetHeight;
-      targetTooltip.style.setProperty("--top", top < 0 ? 0 : top + "px");
-    },
-    desTooltip(id) {
-      const targetTooltip = document.getElementById(id);
-      setTimeout(() => {
-        if (!this.$store.delaydes.on) targetTooltip.hidePopover();
-      }, 300);
     },
   }));
 });

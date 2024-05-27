@@ -1,0 +1,158 @@
+@layer components {
+  .sl-card-left-content {
+    @apply flex flex-col-reverse rounded-[24px] min-h-[460px] max-w-[327px] cursor-pointer;
+    @apply tablet:flex-row tablet:h-[480px] tablet:max-w-none tablet:w-[996px] tablet:rounded-[32px];
+    &_tags {
+      @apply mb-[12px];
+    }
+    &_theme-pink {
+      .sl-card-left-content_left {
+        @apply bg-singlife-purple-200;
+      }
+      
+    }
+    &_theme-blue {
+      .sl-card-left-content_left {
+        @apply bg-singlife-blue;
+      }    
+    }
+    &_title {
+      @apply text-[18px] mobile:text-section-header-h3 text-white font-semibold mb-[16px] tablet:text-card-header-h1;
+    }
+    &_subtitle {
+      @apply text-base text-white tablet:text-card-sub-header;
+    }
+    &_left {
+      padding: 26px 30px 0px 24px;
+      @apply relative w-full tablet:w-[384px] h-[230px] tablet:h-full tablet:p-[40px] flex-shrink-0;
+    }
+    &_right {
+      @apply flex-1;
+      img {
+        @apply w-full h-[230px] tablet:h-full;
+      }
+    }
+    &_button {
+      left: 40px;
+      bottom: 40px;
+      @apply absolute hidden tablet:block;
+    }
+
+  }
+  .card-content-left-carousel-container {
+    @apply mb-[68px] tablet:mb-[94px] mx-auto overflow-visible container desktop:p-0 max-w-[1000px];
+    .sl-card-heading {
+      @apply tablet:max-w-[996px] tablet:mx-auto;
+    }
+    .swiper-slide {
+      width: auto!important;
+    }
+    .swiper-container {
+      @apply relative pb-[46px];
+    }
+    .swiper-pagination {
+      @apply left-1/2 bottom-0 hidden tablet:block;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+
+
+@layer components {
+  .sl-card-overload-content {
+    @apply cursor-pointer;
+    @apply rounded-[24px] w-[327px] h-[460px] relative flex flex-col;
+    @apply tablet:w-[558px] tablet:h-[450px] tablet:rounded-[32px] tablet:block;
+    @apply overflow-hidden preserve-3d;
+    &_image {
+      @apply relative flex-1 bg-cover;
+      @apply tablet:absolute tablet:w-full tablet:h-full;
+      z-index: -1;
+      img {
+        @apply w-full h-full object-cover scale-100 transition-transform;
+      }
+    }
+
+    &:hover{
+      .sl-card-overload-content_image img{
+        @apply scale-[1.2] mobile:transition-transform;
+      }
+    }
+
+
+    &_overlay {
+      @apply absolute w-full bottom-0 h-[370px] rotate-[180deg] hidden tablet:block;
+      background: linear-gradient(180deg, #000000 -23.72%, rgba(0, 0, 0, 0.73) 19.54%, rgba(0, 0, 0, 0) 87.38%);
+      z-index: -1;
+    }
+    &_content {
+      @apply p-[24px];
+      @apply tablet:px-[40px] tablet:mt-[168px];
+      &-title {
+        @apply text-white text-section-header-h3 font-semibold mb-[8px];
+        @apply tablet:text-card-header-h1;
+      }
+      &-sub-title {
+        @apply text-base text-white font-normal tablet:text-card-sub-header;
+      }
+    } 
+    &_action-cta {
+      left: 40px;
+      bottom: 40px;
+      @apply hidden tablet:flex absolute;
+      span {
+        @apply text-base font-semibold text-white mr-[5px];
+        transition: margin-right .15s;
+      }
+      img{
+        @apply scale-100;
+        transition: transform .15s;
+      }
+      
+      &:hover {
+        span {
+          @apply mr-[25px];
+        }
+        img{
+          @apply scale-125;
+        }
+      }
+    }
+    &_theme-green {
+      .sl-card-overload-content_content {
+        .sl-tag {
+          @apply sl-tag-grey tablet:sl-tag-green;
+        }
+        @apply bg-singlife-teal tablet:bg-transparent;
+      }
+    }
+    &_theme-blue {
+      .sl-card-overload-content_content {
+        .sl-tag {
+          @apply sl-tag-grey tablet:sl-tag-blue;
+        }
+        @apply  bg-singlife-blue-200 tablet:bg-transparent;
+      }
+    }
+  }
+
+  .sl-cards-overlap-wrapper {
+    @apply overflow-hidden;
+  }
+
+  .sl-cards-overlap-carousel-container {
+    // @apply flex flex-grow justify-between;
+    @apply overflow-hidden container;
+    .swiper-wrapper {
+      @apply desktop:justify-between desktop:flex-wrap desktop:gap-y-[40px];
+    }
+    .swiper-slide {
+      width: auto!important;
+    }
+    .swiper-pagination-bullet {
+      @apply hidden;
+    }
+  }
+}
+

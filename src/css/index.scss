@@ -10,16 +10,9 @@
 
 @import "./header.scss";
 @import "./common/_affluent-button.scss";
-@import "./affluent-header.scss";
-@import "./affluent-hero.scss";
-@import "./affluent-standfirst";
-@import "./affluent-card.scss";
-@import "./affluent-background";
-@import "./affluent-featured-articles";
-@import "./affluent-products";
-@import "./affluent-contact-form";
-@import "./affluent-fullwidth-banner";
+@import "./affluent/index.scss";
 @import "./infographic/index";
+@import "./revamp/index.scss";
 
 body.theme-affluent {
   font-family: "Inter", sans-serif;

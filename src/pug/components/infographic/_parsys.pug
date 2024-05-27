@@ -1,0 +1,26 @@
+mixin parsys-card-item(color, title, desc, oneitem = undefined)
+  .text-and-image-affluent(x-data="{ hcenter: false }" x-init="hcenter = $root.children.length === 1" :class="hcenter && 'justify-center'")
+    //- if oneitem === 1
+    //-   .parsys_card-title(class=color)=title
+    if oneitem === undefined || oneitem === 2
+      img.parsys_card-image(src=path + "assets/images/affluent/affluent-hero-small.png", alt="affluent-hero")
+    if oneitem === undefined || oneitem === 3
+      .parsys_card-desc=desc
+
+mixin parsys-card-symbol 
+  .symbols
+    .parsys_card-plus +
+
+mixin new-item-reserve
+  .new-item-reserve.md
+
+mixin parsys(author=false)
+  +title-and-desc("What is Singlife Shield Starter and Health Plus Starter?", "Singlife Shield Starter and Health Plus Starter is an affordable Integrated Shield Plan (IP) and rider that protects you against unexpected hospital bills and minimises your out-of-pocket expenses.")
+  .parsys_card-listing
+    +parsys-card-item('bg-singlife-green-200', 'MediShield Life', 'Basic medical insurance plan by the Central Provident Fund (CPF) Board')
+    +parsys-card-symbol
+    +parsys-card-item('bg-singlife-purple-600 text-black','Singlife Shield Starter', 'Integrated Shield Plan (IP) by Singlife for greater medical coverage', 2)
+    +parsys-card-symbol
+    +parsys-card-item('bg-singlife-purple-700 text-black','Health Plus Starter', 'Singlife Shield Starter’s Rider', 3)
+    if(author)
+      +new-item-reserve

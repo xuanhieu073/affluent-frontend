@@ -90,7 +90,7 @@ module.exports = {
         "singlife-purple-100": "#B474B0", //- rgb(180,116,176)
         "singlife-purple-200": "#783780", //- rgb(120,55,128) //+banner
         "singlife-purple-400": "#F2E6F1", //- rgb(242,230,241)
-        "singlife-purple-500": "#EDD8EE", //- rgb(242,230,241)
+        "singlife-purple-500": "#EDD8EE",
         "singlife-purple-600": "#C28BF6",
         "singlife-purple-700": "#EBD8FD",
         "singlife-blue": "#2b5888", //- rgb(43,88,136)
