@@ -1,5 +1,5 @@
-mixin popover-tooltip(id)
-  .popover-tooltip(popover id=id x-data="" @mouseover="$store.delaydes.toggle($el.id)" @mouseleave="$store.delaydes.toggle('');$store.delaydes.desTooltipByStore($el.id)")
+mixin popover-tooltip()
+  .popover-tooltip(popover id=id x-data="" @mouseover="$store.delaydes.toggle($el.id)" @mouseleave="$store.delaydes.toggle('');$store.delaydes.desTooltipByStore($el.id)")&attributes(attributes)
     .popover-tooltip_content
       h6.popover-tooltip_header Singlife will pay
       p For preferred medical providers, Singlife will cover the remaining amount, up to S$20,000, after deducting the 5% co-insurance. For non-preferred medical providers, Singlife's coverage will be reduced by 50% (i.e., from 95% to 48%).
@@ -21,7 +21,9 @@ mixin flip-card-with-tooltip(id, type, title, description, backDescription, imag
         mobileHover = !mobileHover;
       }
     }
-  `)&attributes(attributes)
+  `
+  x-id="['tp']"
+  )&attributes(attributes)
     if type != 'static' && type != 'brandstory'
       .sl-flip-cards-border(:class="{ 'fadeOut': cardHover }")
     .sl-flip-cards-item_inner
@@ -36,8 +38,8 @@ mixin flip-card-with-tooltip(id, type, title, description, backDescription, imag
           span(class="text-singlife-purple font-semibold")
             a(href="#tooltippov2") just 5%1
           | of the hospital bills when you add-on Singlife Health Plus Starter2.
-    +popover-tooltip("tooltippov1")
-    +popover-tooltip("tooltippov2")
+    +popover-tooltip(class="" :id="$id('tp')+'tooltippov1'")
+    +popover-tooltip(class="" :id="$id('tp')+'tooltippov2'")
 
 mixin flip-cards-tooltip(type)
   .sl-flip-cards.sl-filp-card-no-slider.sl-flip-cards-static&attributes(attributes)

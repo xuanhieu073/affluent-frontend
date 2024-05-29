@@ -3,7 +3,7 @@ document.addEventListener("alpine:init", () => {
     init() {
       const triggerEls = this.$root.querySelectorAll('[href^="#"]');
       for (const triggerEl of triggerEls) {
-        const tooltipId = triggerEl.getAttribute("href").replace("#", "");
+        const tooltipId = this.$id('tp') + triggerEl.getAttribute("href").replace("#", "");
         triggerEl.addEventListener("click", (e) => {
           e.preventDefault();
           this.hoverTooltip(tooltipId, triggerEl);
