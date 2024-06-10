@@ -1,0 +1,48 @@
+mixin link(url, target="_blank")
+  a(href=url target=target)&attributes(attributes)
+    block
+    
+mixin product-card(isMostPopular = false)
+  .relative.product-card-container
+    if isMostPopular
+      span.product-card-popular-tag most popular
+    h2.product-card-header Singlife Super Ultra Ultimate Best Way Elite - Term Life
+    .product-card-tag_title Covers:
+    .flex.flex-wrap.gap-2.mb-4
+      span.product-card-tag DEATH
+      span.product-card-tag DISABILITY
+      span.product-card-tag CRITICAL ILLNESS
+      span.product-card-tag INVESTMENTS
+    .product-card-description An unfortunate incident in life is all it takes to leave you fully reliant on another for life's simplest tasks.
+    ul.product-card-features
+      li.product-card-feature
+        img(src= path + "./assets/icons/revamp/sl-icon-checkmark.svg")
+        p.product-card-feature-text Riders available
+      li.product-card-feature
+        img(src= path + "./assets/icons/revamp/sl-icon-checkmark.svg")
+        p.product-card-feature-text 
+          span.product-card-feature-bold up to 400%
+          |  base sum assured
+      li.product-card-feature
+        img(src= path + "./assets/icons/revamp/sl-icon-checkmark.svg")
+        p.product-card-feature-text Lifetime cover and Accumulates cash value
+      li.product-card-feature
+        img(src= path + "./assets/icons/revamp/sl-icon-checkmark.svg")
+        p.product-card-feature-text Flexible to increase coverage at key life stage events
+      if isMostPopular
+        li.product-card-feature
+          img(src= path + "./assets/icons/revamp/sl-icon-checkmark.svg")
+          p.product-card-feature-text Flexible to increase coverage at key life stage events
+    .product-card-action-container
+      +link("#").product-card-download
+        img(src= path + "./assets/icons/revamp/sl-icon-download-red.svg")
+        p.product-card-download-text Product Summary
+    +link("#").product-card-button Learn More
+      
+mixin products-card
+  .products-card-container.container
+    +product-card(true)
+    +product-card
+    +product-card
+    +product-card
+    +product-card
