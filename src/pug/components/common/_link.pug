@@ -1,0 +1,13 @@
+mixin link(url, target="_blank")
+  a(href=url target=target)&attributes(attributes)
+    block
+
+mixin cta-view-all-red(url, text = 'View all')
+  +link(url)&attributes(attributes).sl-cta-with-icon-red
+    span=text
+    +icon("../../assets/icons/sl-arrow-right-red.svg")
+
+mixin cta-with-arrow(url, text = 'View all')
+  +link(url)&attributes(attributes).sl-link-with-red-arrow.group
+    span=text
+    +icon(path + "assets/icons/sl-icon-red-arrow.svg").sl-link-with-red-arrow-img
