@@ -4,7 +4,9 @@
       @apply text-singlife-purple font-semibold text-section-header-h2 mobile:text-section-header-h1 text-center mb-5;
     }
     &_desc {
-      @apply text-grey font-medium text-base mobile:text-[20px] text-center mb-8;
+      p {
+        @apply text-grey font-medium text-base mobile:text-[20px] text-center mb-8;
+      }
     }
   }
 }

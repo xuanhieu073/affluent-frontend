@@ -32,7 +32,7 @@ document.addEventListener("alpine:init", () => {
       });
     },
     async showTooltip(id, targetHoverEl) {
-      const targetTooltip = document.getElementById(id);
+      const targetTooltip = document.getElementById(this.$id('graphic')+id);
       const align = targetTooltip.classList.contains("right-align");
       const bodyRect = document.body.getBoundingClientRect();
       const elemRect = this.$refs[targetHoverEl].getBoundingClientRect();
@@ -81,8 +81,8 @@ document.addEventListener("alpine:init", () => {
       }
     },
     hideTooltip(id) {
-      const targetTooltip = document.getElementById(id);
-      if (!this.$store.delaydes.on) targetTooltip.hidePopover();
+      const targetTooltip = document.getElementById(this.$id('graphic')+id);
+      targetTooltip.hidePopover();
     },
   }));
 });
