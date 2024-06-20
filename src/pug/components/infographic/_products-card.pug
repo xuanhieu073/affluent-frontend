@@ -1,0 +1,58 @@
+mixin link(url, target="_blank")
+  a(href=url target=target)&attributes(attributes)
+    block
+
+mixin optimisation-product-card(isMostPopular = false)
+  .relative.product-card-container
+    if isMostPopular
+      span.product-card-popular-tag.purple most popular
+    h2.product-card-header Singlife Super Ultra Ultimate Best Way Elite - Term Life
+    .flex.flex-wrap.gap-2.mb-4
+      span.product-card-tag DEATH
+      span.product-card-tag DISABILITY
+      span.product-card-tag CRITICAL ILLNESS
+      span.product-card-tag INVESTMENTS
+    .product-card-promotion 
+      img(src= path + "./assets/icons/icon-promotion.svg")
+      | 20% off first year premium
+    .product-card-description An unfortunate incident in life is all it takes to leave you fully reliant on another for life's simplest tasks.
+    ul.product-card-features
+      li.product-card-feature
+        img(src= path + "./assets/icons/sl-icon-checkmark.svg")
+        p.product-card-feature-text Riders available
+      li.product-card-feature
+        img(src= path + "./assets/icons/sl-icon-checkmark.svg")
+        p.product-card-feature-text 
+          span.product-card-feature-bold up to 400%
+          |  base sum assured
+      li.product-card-feature
+        img(src= path + "./assets/icons/sl-icon-checkmark.svg")
+        p.product-card-feature-text Lifetime cover and Accumulates cash value
+      li.product-card-feature
+        img(src= path + "./assets/icons/sl-icon-checkmark.svg")
+        p.product-card-feature-text Flexible to increase coverage at key life stage events
+      if isMostPopular
+        li.product-card-feature
+          img(src= path + "./assets/icons/sl-icon-checkmark.svg")
+          p.product-card-feature-text Flexible to increase coverage at key life stage events
+    .product-card-action-container.left
+      +link("#").product-card-download.left
+        img(src= path + "./assets/icons/sl-icon-download-red.svg")
+        p.product-card-download-text Product Summary
+      +link("#").product-card-download.left
+        img(src= path + "./assets/icons/icon-info.svg")
+        p.product-card-download-text Rider
+    +link("#").product-card-button Learn More
+      
+mixin productcard
+  .products-card_wraper.mobile-horizontal-scroll(x-data="productSummary")
+    .products-card-container.product-card-wrapper.container(x-ref="list" @resize.window.debounce="isOverflow = $el.clientWidth < $el.scrollWidth")
+      +optimisation-product-card(true)
+      +optimisation-product-card
+      +optimisation-product-card
+      +optimisation-product-card
+      +optimisation-product-card
+    .products-card_pagination(x-show="isOverflow")
+      .products-card_pagination-container
+        template(x-for="i in totalPages")
+          .products-card_pagination-page(:class="currentPage === i-1 && 'active'" @click="scrollTo(i-1)")
