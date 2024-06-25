@@ -15,7 +15,7 @@ mixin infographic-chart(nextstate)
     //- img.absolute.top-2.left-2(class="w-[432px] h-[432px] transition-transform duration-300" :class=`selectedPlan === '${nextstate}' && 'rotate-[66.6deg]'` src=path+"assets/icons/infographic/donut.svg", alt="")
     div.absolute.top-2(class="left-1/2 -translate-x-1/2 w-[285px] h-[285px] mobile:w-[432px] mobile:h-[432px] transition-transform duration-300" :class=`selectedPlan === '${nextstate}' && 'rotate-[66.6deg]'`)
       | <svg viewBox="0 0 453 452" fill="none" xmlns="http://www.w3.org/2000/svg">
-      |   <g @mouseover="showTooltip(selectedPlan === 'starter-plus' ? 'sllpaypov' : 'sllpaypovmr', 'sinlifeWillpayRatio'); shover=true" @mouseleave="hideTooltip(selectedPlan === 'starter-plus' ? 'sllpaypov' : 'sllpaypovmr'); shover=false" :filter="shover && 'url(#filter0_d_133_318)'">
+      |   <g @mouseover="showTooltip(selectedPlan === 'starter-plus' ? 'sllpaypov' : 'sllpaypovmr', 'sinlifeWillpayRatio');shover=true" @mouseleave="hideTooltip('sllpaypov');shover=false" :filter="shover && 'url(#filter0_d_133_318)'">
       |     <path fill-rule="evenodd" clip-rule="evenodd"
       |       d="M226 442C345.294 442 442 345.294 442 226C442 225.329 441.997 224.658 441.991 223.988C441.999 225.159 441.998 226.331 441.987 227.503L311 226.291C310.843 273.101 272.847 311 226 311C179.056 311 141 272.944 141 226C141 179.056 179.056 141 226 141C232.268 141 238.377 141.678 244.259 142.966L276.853 16.0203C260.545 12.085 243.516 10 226 10C106.706 10 10 106.706 10 226C10 345.294 106.706 442 226 442Z"
       |       fill="#FA8F8C" />
@@ -98,7 +98,7 @@ mixin infographic-product-card(id, premium)
         h4.infographic-product_card-heading Singlife Shield Starter + Health Plus (Rider)
       else
         h4.infographic-product_card-heading Singlife Shield Starter
-      input.infographic-input(type="radio" value=id :id=`$id('graphic')+'${id}'` :name="$id('graphic')+'infographic-group'" x-model="selectedPlan")
+      input.infographic-input(type="radio" value=id :id=`$id('graphic')+'${id}'` name="infographic-group" x-model="selectedPlan")
     .infographic-product_card-desc
       p As-charged coverage of up to S$20,000/year at preferred medical providers
     .infographic-product_card-feature-text

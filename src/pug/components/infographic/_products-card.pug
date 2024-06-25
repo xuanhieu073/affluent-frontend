@@ -1,3 +1,7 @@
+mixin link(url, target="_blank")
+  a(href=url target=target)&attributes(attributes)
+    block
+
 mixin optimisation-product-card(isMostPopular = false)
   .relative.product-card-container
     if isMostPopular
@@ -48,7 +52,7 @@ mixin productcard
       +optimisation-product-card
       +optimisation-product-card
       +optimisation-product-card
-    .products-card_pagination
+    .products-card_pagination(x-show="isOverflow")
       .products-card_pagination-container
         template(x-for="i in totalPages")
           .products-card_pagination-page(:class="currentPage === i-1 && 'active'" @click="scrollTo(i-1)")
