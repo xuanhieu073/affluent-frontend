@@ -33,13 +33,13 @@ document.addEventListener("alpine:init", () => {
       targetTooltip.showPopover();
 
       if (elemRect.top < targetTooltip.clientHeight) {
-        top += el.offsetHeight;
         targetTooltip.classList.remove("top-pointer");
         targetTooltip.classList.add("bottom-pointer");
+        top += el.offsetHeight;
       } else {
-        top -= targetTooltip.offsetHeight;
         targetTooltip.classList.remove("bottom-pointer");
         targetTooltip.classList.add("top-pointer");
+        top -= targetTooltip.offsetHeight;
       }
 
       targetTooltip.style.setProperty("--top", top < 0 ? 0 : top + "px");
@@ -52,3 +52,7 @@ document.addEventListener("alpine:init", () => {
     },
   }));
 });
+
+if (navigator.userAgent.indexOf('Windows') !== -1 && navigator.userAgent.indexOf('Chrome') !== -1) {
+  document.documentElement.classList.add('chrome-windows');
+}

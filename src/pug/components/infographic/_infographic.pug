@@ -1,22 +1,26 @@
 mixin infographic-chart(nextstate)
-  div(x-ref="chart" class="w-[327px] mobile:w-[532px] mx-auto mb-[82px] h-[150px] mobile:h-[224px] relative overflow-hidden p-2")
+  div(x-ref="chart" class="w-[327px] mobile:w-[532px] mx-auto mb-[82px] h-[150px] mobile:h-[224px] relative overflow-hidden p-2" :data-id="$id('graphic')")
     div(x-ref="sinlifeWillpayRatio" class="infographic-chart_ratio infographic-chart_singlife-ratio")
       p.infographic-chart_singlife-ratio_ratio(x-text="sllpay + '%'")
-      p.infographic-chart_singlife-ratio_text Singlife will pay
+      .infographic-chart_singlife-ratio_text
+        .premium-plan-text(x-show=`selectedPlan === '${nextstate}'`) Singlife Plus will pay
+        .normal-plan-text(x-show=`selectedPlan !== '${nextstate}'`) Singlife will pay
     //- div(x-ref="youWillpayRatio" class="absolute z-10 bg-white drop-shadow-lg aspect-square rounded-full w-[56px] mobile:w-[100px] flex flex-col items-center justify-center" 
     div(x-ref="youWillpayRatio" class="infographic-chart_ratio infographic-chart_you-ratio" 
       :class=`selectedPlan === '${nextstate}' ? 'bottom-1 right-1' : 'bottom-20 right-12'`)
       p.infographic-chart_singlife-ratio_ratio.text-singlife-teal-100(x-text="yllpay + '%'")
-      p.infographic-chart_singlife-ratio_text You will pay
+      .infographic-chart_singlife-ratio_text 
+        .premium-plan-text(x-show=`selectedPlan === '${nextstate}'`) You Plus will pay
+        .normal-plan-text(x-show=`selectedPlan !== '${nextstate}'`) You will pay
     //- img.absolute.top-2.left-2(class="w-[432px] h-[432px] transition-transform duration-300" :class=`selectedPlan === '${nextstate}' && 'rotate-[66.6deg]'` src=path+"assets/icons/infographic/donut.svg", alt="")
     div.absolute.top-2(class="left-1/2 -translate-x-1/2 w-[285px] h-[285px] mobile:w-[432px] mobile:h-[432px] transition-transform duration-300" :class=`selectedPlan === '${nextstate}' && 'rotate-[66.6deg]'`)
       | <svg viewBox="0 0 453 452" fill="none" xmlns="http://www.w3.org/2000/svg">
-      |   <g @mouseover="showTooltip('sllpaypov', 'sinlifeWillpayRatio');shover=true" @mouseleave="hideTooltip('sllpaypov');shover=false" :filter="shover && 'url(#filter0_d_133_318)'">
+      |   <g @mouseover="showTooltip(selectedPlan === 'starter-plus' ? 'sllpaypov' : 'sllpaypovmr', 'sinlifeWillpayRatio'); shover=true" @mouseleave="hideTooltip(selectedPlan === 'starter-plus' ? 'sllpaypov' : 'sllpaypovmr'); shover=false" :filter="shover && 'url(#filter0_d_133_318)'">
       |     <path fill-rule="evenodd" clip-rule="evenodd"
       |       d="M226 442C345.294 442 442 345.294 442 226C442 225.329 441.997 224.658 441.991 223.988C441.999 225.159 441.998 226.331 441.987 227.503L311 226.291C310.843 273.101 272.847 311 226 311C179.056 311 141 272.944 141 226C141 179.056 179.056 141 226 141C232.268 141 238.377 141.678 244.259 142.966L276.853 16.0203C260.545 12.085 243.516 10 226 10C106.706 10 10 106.706 10 226C10 345.294 106.706 442 226 442Z"
       |       fill="#FA8F8C" />
       |   </g>
-      |   <g @mouseover="showTooltip(selectedPlan === 'starter-plus' ? 'yllpaypov' : 'yllpaypovmr', 'youWillpayRatio');yhover=true" @mouseleave="hideTooltip(selectedPlan === 'starter-plus' ? 'yllpaypov' : 'yllpaypovmr');yhover=false" :filter="yhover && 'url(#filter1_d_133_318)'">
+      |   <g filter="url(#filter1_d_133_318)">
       |     <path fill-rule="evenodd" clip-rule="evenodd"
       |       d="M311.031 226.244V226.248L442.054 226.248C442.054 205.208 438.98 184.282 432.93 164.131L307.465 201.803C309.785 209.544 311.031 217.748 311.031 226.244Z"
       |       fill="#8ACBC5" />
@@ -86,7 +90,7 @@ mixin infographic-note(text, center)
       p=text
 
 mixin infographic-product-card(id, premium)
-  label(for=id).infographic-product_card(:class=`selectedPlan === '${id}' ? 'bg-singlife-purple-500' : 'bg-singlife-blue-700'`)
+  label.infographic-product_card(:for=`$id('graphic')+'${id}'` :class=`selectedPlan === '${id}' ? 'bg-singlife-purple-500' : 'bg-singlife-blue-700'`)
     if(premium)
       .infographic-product_card-highlight Super Value Bundle!
     .infographic-product_card-header
@@ -94,20 +98,22 @@ mixin infographic-product-card(id, premium)
         h4.infographic-product_card-heading Singlife Shield Starter + Health Plus (Rider)
       else
         h4.infographic-product_card-heading Singlife Shield Starter
-      input.infographic-input(type="radio" value=id id=id name="infographic-group" x-model="selectedPlan")
+      input.infographic-input(type="radio" value=id :id=`$id('graphic')+'${id}'` :name="$id('graphic')+'infographic-group'" x-model="selectedPlan")
     .infographic-product_card-desc
       p As-charged coverage of up to S$20,000/year at preferred medical providers
     .infographic-product_card-feature-text
       img(src=path+"assets/icons/infographic/tick.svg", alt="tick-icon")
       if premium
         div(class="infographic-product_card-feature-text-text") 
-          | Your co-payment is reduced to just 
-          span(class="text-singlife-purple") 5% of hospital bill
+          p
+            | Your co-payment is reduced to just 
+            span(class="text-singlife-purple") 5% of hospital bill
       else
         div(class="infographic-product_card-feature-text-text") 
-          | Your out-of-pocket payment is capped at 
-          span(class="text-singlife-purple") S$3,500 for the deductibles plus 10% of the remaining hospital 
-          | bill
+          p
+            | Your out-of-pocket payment is capped at 
+            span(class="text-singlife-purple") S$3,500 for the deductibles plus 10% of the remaining hospital 
+            | bill
     .infographic-product_card-footer
       p Premium Payable
       span S$300.00
@@ -117,19 +123,25 @@ mixin infographic-products
     +infographic-product-card("starter-plus", true)
     +infographic-product-card("starter")
 
-mixin infographic-tooltip(id, classes)
-  .popover-tooltip(popover id=id class=classes)
+mixin infographic-tooltip(id, classes, header, desc)
+  .popover-tooltip(popover="" :id=`$id('graphic')+'${id}'` class=classes)
     .popover-tooltip_content
-      h6.popover-tooltip_header Singlife will pay
-      p For preferred medical providers, Singlife will cover the remaining amount, up to S$20,000, after deducting the 5% co-insurance. For non-preferred medical providers, Singlife's coverage will be reduced by 50% (i.e., from 95% to 48%).
+      h6.popover-tooltip_header.text-singlife-purple-800=header
+      .popover-tooltip_body !{desc}
 
 mixin infographic
-  .container
-    div(x-data="infographic")
+  .container(x-data="infographic" x-id="['graphic']")
+    div
       +title-and-desc("What you'll need to pay if you are hospitalised", "Reduce your out-of-pocket expenses on your hospital bill with just S$1.00* add-on to your Shield plan.")
       +infographic-chart('starter-plus')
       +infographic-note('Note: Above figures are solely for illustration purposes, based on a S$10,000 bill at preferred medical provider.', true)
       +infographic-products
       +infographic-note('*Premiums quoted before GST')
-    +infographic-tooltip("sllpaypov", "")
-    +infographic-tooltip("yllpaypov", "right-align")
+    +infographic-tooltip("sllpaypov", "", "Singlife Plus will pay", "For preferred medical providers, Singlife will cover the remaining amount, up to S$20,000, after deducting the 5% co-insurance. <br/><br/> For non-preferred medical providers, Singlife's coverage will be reduced by 50% (i.e., from 95% to 48%).")
+    +infographic-tooltip("sllpaypovmr", "", "Singlife will pay", "For preferred medical providers, Singlife will cover the remaining amount, up to S$20,000, after deducting the 5% co-insurance. <br/><br/> For non-preferred medical providers, Singlife's coverage will be reduced by 50% (i.e., from 95% to 48%).")
+    +infographic-tooltip("yllpaypov", "right-align","You Plus will pay", "1) Co-insurance (5% of total bill) <br/> This is the fixed percentage of costs you have to pay regardless of your hospital bill size.")
+    +infographic-tooltip("yllpaypovmr", "right-align","You will pay", "1) Deductibles (up to S$3,500) <br/>Deductible is the amount you have to pay per year before Singlife will cover your hospital bill. Amount depends on the inpatient type (e.g. Private hospital, Class A ward, etc.) <br/><br/>2) Co-insurance (10% of the remaining bill)<br/>This is the percentage of costs you have to pay after deductibles.")
+
+
+mixin generateneccessaryclasses 
+  .popover-tooltip_bottom-pointer

@@ -167,6 +167,11 @@
       img {
         @apply pr-2;
       }
+      &.chrome-windows {
+        p {
+          @apply pt-1;
+        }
+      }
     }
     .product-card-action-container {
       @apply mb-6;

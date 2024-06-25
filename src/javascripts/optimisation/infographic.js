@@ -13,6 +13,7 @@ document.addEventListener("alpine:init", () => {
       this.$watch("selectedPlan", (v) => {
         clearInterval(this.changeNumberInterval);
         if (v === "starter-plus") {
+          this.$refs.chart.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
           this.changeNumberInterval = setInterval(() => {
             if (this.yllpay > 5) {
               this.yllpay--;
@@ -21,6 +22,7 @@ document.addEventListener("alpine:init", () => {
             }
           }, 10);
         } else {
+          this.$refs.chart.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
           this.changeNumberInterval = setInterval(() => {
             if (this.yllpay < 42) {
               this.yllpay++;
@@ -32,7 +34,7 @@ document.addEventListener("alpine:init", () => {
       });
     },
     async showTooltip(id, targetHoverEl) {
-      const targetTooltip = document.getElementById(id);
+      const targetTooltip = document.getElementById(this.$id('graphic')+id);
       const align = targetTooltip.classList.contains("right-align");
       const bodyRect = document.body.getBoundingClientRect();
       const elemRect = this.$refs[targetHoverEl].getBoundingClientRect();
@@ -81,8 +83,8 @@ document.addEventListener("alpine:init", () => {
       }
     },
     hideTooltip(id) {
-      const targetTooltip = document.getElementById(id);
-      if (!this.$store.delaydes.on) targetTooltip.hidePopover();
+      const targetTooltip = document.getElementById(this.$id('graphic')+id);
+      targetTooltip.hidePopover();
     },
   }));
 });

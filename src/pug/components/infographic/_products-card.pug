@@ -8,9 +8,9 @@ mixin optimisation-product-card(isMostPopular = false)
       span.product-card-tag DISABILITY
       span.product-card-tag CRITICAL ILLNESS
       span.product-card-tag INVESTMENTS
-    .product-card-promotion 
+    .product-card-promotion(x-data="" :class="navigator.userAgent.indexOf('Windows') !== -1 && navigator.userAgent.indexOf('Chrome') !== -1 && 'chrome-windows'")
       img(src= path + "./assets/icons/infographic/icon-promotion.svg")
-      | 20% off first year premium
+      p 20% off first year premium
     .product-card-description An unfortunate incident in life is all it takes to leave you fully reliant on another for life's simplest tasks.
     ul.product-card-features
       li.product-card-feature
