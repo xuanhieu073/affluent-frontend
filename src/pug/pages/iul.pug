@@ -1,0 +1,18 @@
+extends ../templates/_layout
+
+block variables
+  -
+    var appId = 'affluent';
+    var title = 'Affluent Page';
+    var description = 'Description: This page is top page.';
+    
+
+block content
+  +affluent-background
+  +affluent-header
+  +affluent-hero
+  +affluent-spacer(80, 180)
+  .affluent-container
+    +affluent-standfirst("<p>“Grow your financial legacy with a strategic blend of life insurance and potential high-growth investments”</p>", "<p>Singlife Legacy Indexed Universal Life is a life insurance that has both life protection and investment solutions. The Index and Fixed accounts help to grow your policy’s cash value, while the guaranteed floor rate of 0% p.a. ensure that you don’t get a negative return, even in a market downturn.</p>")
+    +affluent-spacer(32, 64)
+    +affluent-key-features

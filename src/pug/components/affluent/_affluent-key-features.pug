@@ -1,0 +1,17 @@
+mixin key-feature(title, desc, image)
+  .affluent-key-feature
+    .affluent-key-feature_image-container 
+      img(lazy-src=path + image, alt="affluent-article-image")
+    .affluent-key-feature_content.affluent-card_bg 
+      .affluent-key-feature_title
+       p=title
+      .affluent-key-feature_desc
+       p=desc
+
+mixin affluent-key-features 
+  .affluent-key-feature_container(x-data="" :class="$root.children.length % 3 === 1 ? 'center-last' : $root.children.length % 3 === 2 ? 'center-last-two-items' : ''")
+    +key-feature("Life Insurance Coverage","Provides lifelong protection against death and Terminal Illness3. Learn more on Singlife Legacy IUL’s life protection feature.​", "assets/images/affluent/affluent-article.png")
+    +key-feature("Life Insurance Coverage","Provides lifelong protection against death and Terminal Illness3. Learn more on Singlife Legacy IUL’s life protection feature.​", "assets/images/affluent/affluent-article.png")
+    +key-feature("Life Insurance Coverage","Provides lifelong protection against death and Terminal Illness3. Learn more on Singlife Legacy IUL’s life protection feature.​", "assets/images/affluent/affluent-article.png")
+    +key-feature("Life Insurance Coverage","Provides lifelong protection against death and Terminal Illness3. Learn more on Singlife Legacy IUL’s life protection feature.​", "assets/images/affluent/affluent-article.png")
+    +key-feature("Life Insurance Coverage","Provides lifelong protection against death and Terminal Illness3. Learn more on Singlife Legacy IUL’s life protection feature.​", "assets/images/affluent/affluent-article.png")
