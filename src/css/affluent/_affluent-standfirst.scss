@@ -1,7 +1,17 @@
 @layer utilities {
   .affluent-standfirst {
     &_header {
-      P {
+      &.left {
+        p {
+          @apply mobile:text-left;
+        }
+      }
+      &.right {
+        p {
+          @apply mobile:text-right;
+        }
+      }
+      p {
         @apply text-[18px] mobile:text-card-header-h1 mb-4 text-center font-light underline-offset-[3px];
         b {
           @apply font-semibold;

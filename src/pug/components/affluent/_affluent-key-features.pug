@@ -9,8 +9,10 @@ mixin key-feature(title, desc, image)
        p=desc
 
 mixin affluent-key-features 
+  +affluent-standfirst("<p><b>Key</b> features</p>", "<p>Grow your financial legacy with a strategic blend of life insurance and potential high-growth investments</p>")
+  +affluent-spacer(32, 40)
   .affluent-key-feature_container(x-data="" :class="$root.children.length % 3 === 1 ? 'center-last' : $root.children.length % 3 === 2 ? 'center-last-two-items' : ''")
-    +key-feature("Life Insurance Coverage","Provides lifelong protection against death and Terminal Illness3. Learn more on Singlife Legacy IUL’s life protection feature.​", "assets/images/affluent/affluent-article.png")
+    +key-feature("Life Insurance Coverage","Provides lifelong protection against death and Terminal Illness3", "assets/images/affluent/affluent-article.png")
     +key-feature("Life Insurance Coverage","Provides lifelong protection against death and Terminal Illness3. Learn more on Singlife Legacy IUL’s life protection feature.​", "assets/images/affluent/affluent-article.png")
     +key-feature("Life Insurance Coverage","Provides lifelong protection against death and Terminal Illness3. Learn more on Singlife Legacy IUL’s life protection feature.​", "assets/images/affluent/affluent-article.png")
     +key-feature("Life Insurance Coverage","Provides lifelong protection against death and Terminal Illness3. Learn more on Singlife Legacy IUL’s life protection feature.​", "assets/images/affluent/affluent-article.png")

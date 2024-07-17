@@ -1,0 +1,13 @@
+@layer components {
+  .affluent-sticky {
+    &_reserve {
+      @apply block;
+    }
+    &_container {
+      @apply flex items-center justify-center gap-x-[18px] py-4 bg-gradient-to-br from-sl-affluent-gray/20 to-white/0 border border-solid border-sl-affluent-primary-button/15;
+      &.stick {
+        @apply fixed z-50 bottom-0 left-0 right-0
+      }
+    }
+  }
+}

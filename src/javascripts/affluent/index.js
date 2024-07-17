@@ -5,3 +5,5 @@ export * from "./affluent-hero";
 export * from "./affluent-leadin-section";
 export * from "./affluent-contact-form";
 export * from "./affluent-sign-up";
+export * from "./affluent-hiw-infographic";
+export * from "./affluent-sticky";

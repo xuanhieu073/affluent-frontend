@@ -1,0 +1,17 @@
+mixin affluent-accordion-item(active)
+  .affluent-accordion_item(data-active=active x-data="{active: false, h: 0}" x-init="active = $root.dataset.active === 'true'; $refs.content.style.setProperty('--h', $refs.content.scrollHeight+'px')")
+    .affluent-accordion_item-header(@click="active=!active")
+      .affluent-accordion_item-header-text Regarding Singlife Legacy Indexed Universal Funds
+      .affluent-accordion_item-header-arrow(:class="!active && 'inactive'")
+        img(src=path+"assets/icons/affluent/affluent-chevron-fill-down.svg", alt="chevron")
+    .affluent-accordion_item-content(x-ref="content" :class="!active && 'collapse'") 
+      p Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla maxime quibusdam sapiente maiores quaerat cupiditate eum quia magni laudantium natus? Blanditiis eveniet similique eos, illum est labore odio veniam possimus.
+
+mixin affluent-accordion 
+  .affluent-container.affluent-accordion_container.rich-text
+    .affluent-accordion_header 
+      p <b>Important</b> notes
+    .affluent-accordion_header-divider
+    +affluent-accordion-item('true')
+    +affluent-accordion-item
+    +affluent-accordion-item

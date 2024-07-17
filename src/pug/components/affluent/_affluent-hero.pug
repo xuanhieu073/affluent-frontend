@@ -15,16 +15,22 @@ mixin affluent-hero
       .swiper-wrapper
         .swiper-slide
           .affluent-hero_bg
-            img.for-desktop(lazy-src=path + "assets/images/affluent/affluent-hero.png", alt="affluent-hero")
-            img.for-mobile(lazy-src=path + "assets/images/affluent/affluent-hero-small.png", alt="affluent-hero")
+            img.for-desktop(lazy-src=path + "assets/images/affluent/affluent-hero-iul.png", alt="affluent-hero")
+            img.for-mobile(lazy-src=path + "assets/images/affluent/affluent-hero-iul-small.png", alt="affluent-hero")
           .affluent-hero_content 
             .affluent-hero_title 
-              p Here’s to a thoughtfully
-                b crafted future 1
+              p 
+                span(style="color: #fff") Singlife 
+              p 
+                span.text-golden-gradient
+                  b Legacy Indexed Universal Life
             .affluent-hero_desc 
-              p Create a legacy for your loved ones and embrace the 
+              p(style="color: #fff") Create a legacy for your loved ones and embrace the 
                 br 
                 | freedom to pursue your passion without compromise.
+            .affluent-hero_buttons
+              a(href="#").affluent-button_primary Connect with us
+              a(href="#").affluent-button_link View brochure
             +affluent-hero-pagination
         .swiper-slide
           .affluent-hero_bg

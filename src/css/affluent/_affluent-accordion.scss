@@ -1,0 +1,41 @@
+@layer components {
+  .affluent-accordion {
+    &_header {
+      p {
+        @apply text-[24px] leading-none font-light text-white;
+      }
+      &-divider {
+        @apply h-[3px] mt-6;
+        background: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255,.5), rgba(255,255,255,0));
+      }
+    }
+    &_item {
+      @apply font-sharpsans border-solid border-b border-grey-1200/30;
+      &-header {
+        &:first-of-type {
+          @apply mt-5;
+        }
+        @apply cursor-pointer flex justify-between gap-x-2 items-center py-2 px-6 my-6;
+        &-text {
+          @apply text-base font-semibold;
+        }
+        &-arrow {
+          @apply transition-transform w-10 h-10 flex items-center justify-center;
+          &.inactive {
+            @apply rotate-180;
+          }
+        }
+      }
+      &-content {
+        max-height: var(--h);
+        @apply px-6 pb-6 transition-all overflow-hidden;
+        &.collapse {
+          @apply max-h-0 pb-0;
+        }
+        p {
+          @apply font-medium text-[14px] leading-[1.8];
+        }
+      }
+    }
+  }
+}

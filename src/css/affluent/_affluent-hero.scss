@@ -1,5 +1,6 @@
 @layer components {
   .affluent-hero {
+    --pagi-top: 108px;
     @apply relative;
     &_bg {
       img {
@@ -15,6 +16,15 @@
     &_content {
       @apply absolute flex flex-col gap-2 tablet:gap-4 top-[14.4876%] mobile:top-[17.67857%] w-[min(100%-48px,1200px)] left-1/2 -translate-x-1/2 font-sourcesans3 text-black;
     }
+    &_buttons {
+      @apply flex gap-6 items-center;
+      .affluent-button_primary {
+        @apply px-8 py-3 mobile:px-7 mobile:py-4 text-white;
+      }
+      .affluent-button_link {
+        @apply hidden mobile:block underline underline-offset-[3px];
+      }
+    }
     &_title {
       p {
         @apply text-[24px] leading-[1.07] font-light tablet:text-[48px];
@@ -29,7 +39,7 @@
       }
     }
     &_pagination {
-      @apply absolute top-[108px] tablet:top-[190px] flex opacity-0 mobile:opacity-100;
+      @apply absolute top-[108px] tablet:top-[var(--pagi-top)] flex opacity-0 mobile:opacity-100;
       &-item {
         @apply w-[47px] h-[15px] cursor-pointer relative;
         &.dot-active {
@@ -47,5 +57,10 @@
         @apply absolute inset-[6px] rounded-full bg-white transition-all;
       }
     }
+  }
+  .text-golden-gradient {
+    background: linear-gradient(to left, #CFAE7C, #F2E3C7, #CFAE7C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }

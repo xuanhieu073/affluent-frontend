@@ -13,7 +13,7 @@ document.addEventListener("alpine:init", () => {
     activeIndex: 0,
     async init() {
       this.heroImageSet = this.$root.querySelectorAll('.affluent-hero_bg');
-      this.swiper = new Swiper('.swiper', {
+      this.swiper = new Swiper(this.$root, {
         autoplay: {
           delay: this.$root.dataset.autoplayMs || 5000,
           disableOnInteraction: false,
@@ -34,6 +34,13 @@ document.addEventListener("alpine:init", () => {
       this.swiper.on('realIndexChange', (e) => {
         _this.activeIndex = e.realIndex;
       });
+
+      //calc pagination possiton
+      const herocontents = this.$root.querySelectorAll('.affluent-hero_content');
+      const maxContentHeight = [...herocontents].reduce((acc, item) => {
+        return item.offsetHeight > acc ? item.offsetHeight : acc;
+      }, 0)
+      this.$root.style.setProperty('--pagi-top', 8 + maxContentHeight + 'px')
     },
     goToSlide(index){
       this.swiper.slideTo(index);

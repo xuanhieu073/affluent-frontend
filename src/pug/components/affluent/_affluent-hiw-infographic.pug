@@ -1,0 +1,25 @@
+mixin affluent-hiw-infographic-header(header, subheader, ctatext)
+  .affluent-standfirst
+    .affluent-standfist_title 
+      .affluent-standfirst_header !{header}
+      .affluent-standfirst_subheader !{subheader}
+    if ctatext
+      .affluent-standfirst_cta
+        a.affluent-button_primary=ctatext 
+
+mixin affluent-hiw-infographic 
+  +affluent-hiw-infographic-header("<p><b>Key</b> features</p>", "<p>Grow your financial legacy with a strategic blend of life insurance and potential high-growth investments</p>")
+  +affluent-spacer(32, 40)
+  .affluent-hiw-infographic_container(x-data="affluent_hiwinfographic")
+    .swiper(x-ref="swiper")
+      .swiper-wrapper
+        .swiper-slide 
+            img(class="mobile:hidden" lazy-src=path+"/assets/images/affluent/affluent-hero.png", alt="hiw-infographic")
+            img(class="hidden mobile:block" lazy-src=path+"/assets/images/affluent/affluent-hero.png", alt="hiw-infographic")
+        .swiper-slide 
+            img(class="mobile:hidden" lazy-src=path+"/assets/images/affluent/affluent-hero.png", alt="hiw-infographic")
+            img(class="hidden mobile:block" lazy-src=path+"/assets/images/affluent/affluent-hero.png", alt="hiw-infographic")
+        .swiper-slide 
+            img(class="mobile:hidden" lazy-src=path+"/assets/images/affluent/affluent-hero.png", alt="hiw-infographic")
+            img(class="hidden mobile:block" lazy-src=path+"/assets/images/affluent/affluent-hero.png", alt="hiw-infographic")
+      .swiper-pagination(x-ref="pagination")
