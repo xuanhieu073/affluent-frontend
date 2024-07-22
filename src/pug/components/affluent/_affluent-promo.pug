@@ -1,11 +1,12 @@
-mixin affluent-promo 
-  .affluent-promo_container.image-left.image-top
-    img.affluent-promo_image(class="mobile:hidden" src=path+"assets/images/affluent/affluent-promo-small.png", alt="affluent-promo")
-    img.affluent-promo_image(class="hidden mobile:block" src=path+"assets/images/affluent/affluent-promo.png", alt="affluent-promo")
-    .affluent-promo_title.affluent-container
-      .affluent-promo_title-text
-        p <b>See</b> our full suite 
-        p of products  
-      .affluent-promo_title-sub
-        p Lorem ipsum dolor sit amet, consectetur 
-      button.affluent-button_primary Discover more
+mixin affluent-promo
+  .affluent-promo(x-data="" x-init="$root.style.setProperty('--h', $refs.desktopimg.offsetHeight + 'px')")
+    .affluent-promo_container.image-left.image-top
+      img.affluent-promo_image(class="mobile:hidden" src=path+"assets/images/affluent/affluent-promo-small.png", alt="affluent-promo")
+      img.affluent-promo_image(class="hidden mobile:block" src=path+"assets/images/affluent/affluent-promo.png", alt="affluent-promo" x-ref="desktopimg")
+      .affluent-promo_title.affluent-container
+        .affluent-promo_title-text
+          p <b>See</b> our full suite 
+          p of products  
+        .affluent-promo_title-sub
+          p Lorem ipsum dolor sit amet, consectetur 
+        button.affluent-button_primary Discover more

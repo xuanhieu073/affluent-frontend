@@ -16,7 +16,6 @@ document.addEventListener("alpine:init", () => {
         (entries) => {
           entries.forEach((entry) => {
             const percentageVisible = entry.intersectionRatio * 100;
-            console.log(`Percentage visible: ${percentageVisible.toFixed(2)}%`);
             if (percentageVisible < 100) {
               _this.$refs.container.style.setProperty("--p", "fixed");
               _this.$refs.reserve.style.setProperty(

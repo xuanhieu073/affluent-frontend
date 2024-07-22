@@ -11,7 +11,7 @@ mixin affluent-hero-pagination
 
 mixin affluent-hero
   .affluent-hero
-    .swiper(x-data="affluent_hero" data-autoplay-ms="1000")
+    .swiper(x-data="affluent_hero" data-autoplay-ms="1000" @resize.window.debounce="calcPaginationPos()")
       .swiper-wrapper
         .swiper-slide
           .affluent-hero_bg
@@ -43,6 +43,18 @@ mixin affluent-hero
                 b crafted future 2
             .affluent-hero_desc 
               p Create a legacy for your loved ones and embrace the 
+                br 
+                | freedom to pursue your passion without compromise.
+                br 
+                | freedom to pursue your passion without compromise.
+                br 
+                | freedom to pursue your passion without compromise.
+                br 
+                | freedom to pursue your passion without compromise.
+                br 
+                | freedom to pursue your passion without compromise.
+                br 
+                | freedom to pursue your passion without compromise.
                 br 
                 | freedom to pursue your passion without compromise.
             +affluent-hero-pagination

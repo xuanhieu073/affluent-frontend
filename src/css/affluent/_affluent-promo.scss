@@ -1,5 +1,7 @@
 @layer components {
   .affluent-promo {
+    --h: auto;
+    @apply mobile:flex mobile:flex-col mobile:justify-end mobile:h-[var(--h)];
     &_container {
       @apply relative flex flex-col-reverse bg-gradient-to-br from-sl-affluent-gray/20 to-white/0;
       &.image-left {
@@ -41,16 +43,18 @@
       }
     }
     &_image {
-      @apply tablet:absolute;
+      @apply tablet:absolute w-[min(100vw,_951px)];
     }
     &_title {
       @apply z-[1] w-full flex flex-col gap-4 mobile:gap-6 pt-8 mobile:py-12;
       &-text {
+        @apply max-h-[82px] overflow-hidden;
         p {
-          @apply text-[24px] mobile:text-[40px] leading-none; 
+          @apply text-[24px] mobile:text-[40px] leading-none;
         }
       }
       &-sub {
+        @apply max-h-[52px] overflow-hidden;
         p {
           @apply text-[14px] mobile:text-card-sub-header-2 font-light;
         }

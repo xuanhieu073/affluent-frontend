@@ -39,7 +39,7 @@
       }
     }
     &_pagination {
-      @apply absolute top-[108px] tablet:top-[var(--pagi-top)] flex opacity-0 mobile:opacity-100;
+      @apply absolute mobile:top-[var(--pagi-top)] flex opacity-0 mobile:opacity-100;
       &-item {
         @apply w-[47px] h-[15px] cursor-pointer relative;
         &.dot-active {

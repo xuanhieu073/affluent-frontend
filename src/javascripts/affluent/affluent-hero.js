@@ -34,16 +34,19 @@ document.addEventListener("alpine:init", () => {
       this.swiper.on('realIndexChange', (e) => {
         _this.activeIndex = e.realIndex;
       });
-
+      this.calcPaginationPos();
+    },
+    goToSlide(index){
+      this.swiper.slideTo(index);
+    },
+    calcPaginationPos() {
       //calc pagination possiton
       const herocontents = this.$root.querySelectorAll('.affluent-hero_content');
       const maxContentHeight = [...herocontents].reduce((acc, item) => {
         return item.offsetHeight > acc ? item.offsetHeight : acc;
       }, 0)
+      console.log("🚀 ~ maxContentHeight ~ maxContentHeight:", maxContentHeight)
       this.$root.style.setProperty('--pagi-top', 8 + maxContentHeight + 'px')
-    },
-    goToSlide(index){
-      this.swiper.slideTo(index);
     }
   }));
 });

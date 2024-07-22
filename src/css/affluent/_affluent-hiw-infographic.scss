@@ -5,13 +5,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        @apply w-[calc(100vw-48px)] mobile:w-[min(1280px,_calc(100vw-48px))] h-[251px] mobile:h-[905px];
+        @apply w-[calc(100vw-48px)] mobile:w-[min(1280px,_calc(100vw-48px))];
         img {
           @apply w-full h-full object-cover rounded-2xl;
         }
       }
       .swiper-pagination {
-        @apply static flex flex-wrap w-full justify-center gap-3 mt-[30px] mobile:mt-[52px];
+        @apply static flex w-full justify-center gap-x-3 mt-[30px] mobile:mt-[52px];
         .swiper-pagination-bullet {
           @apply cursor-pointer block w-9 h-1 rounded-full bg-slate-600 bg-white/20;
         }
