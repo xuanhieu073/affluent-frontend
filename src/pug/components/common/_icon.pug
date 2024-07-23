@@ -1,0 +1,9 @@
+mixin icon(src, alt="")
+  img(src=src alt=alt)&attributes(attributes)
+
+mixin link-icon(url, src, alt="", target="_blank")
+  +link(url)&attributes(attributes)
+    +icon(src, alt)
+
+mixin json-player(id, src, width, height)
+  lottie-player(id=id, src=src, style=`width:${width}px;height:${height}px`,mode="normal", background="transparent", speed="1", autoplay)&attributes(attributes)

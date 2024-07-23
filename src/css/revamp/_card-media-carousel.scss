@@ -1,0 +1,110 @@
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .sl-card-media-carousel {
+    &-container {
+      @apply py-[32px] desktop:py-[72px];
+      .sl-card-media-heading {
+        @apply text-center pl-2 pr-2;
+        span {
+          @apply text-skin-media;
+        }
+      }
+      .sl-product-description {
+        @apply mt-0;
+
+        ul, ol {@apply inline-block;}
+        ul{@apply list-disc;}
+        ol{@apply list-decimal;}
+      }
+      .swiper {
+        @apply pb-[40px];
+      }
+      .swiper-slide {
+        @apply w-auto;
+
+        &-next {
+          @apply pl-[16px];
+          @apply tablet:pl-[8px];
+          transform:none !important;
+
+          & .sl-card-media-carousel-item {
+            transform: scale(0.85);
+          }
+        }
+
+        &-prev {
+          @apply pr-[16px];
+          @apply tablet:pr-[8px];
+          transform:none !important;
+
+          & .sl-card-media-carousel-item {
+            transform: scale(0.85);
+          }
+        }
+      }
+      .swiper-pagination {
+        @apply left-1/2 bottom-0;
+        transform: translateX(-50%);
+      }
+      .swiper-slide-active {
+        .sl-card-media-carousel-item {
+          transform: scale(100%);
+          &::after {
+            @apply hidden;
+          }
+        }
+        .sl-card-media-carousel-item-control-panel {
+          @apply block w-auto;
+          .action-icon {
+            @apply cursor-pointer;
+          }
+        }
+      }
+      .swiper-pagination-bullet {
+        @apply bg-black  rounded-[100px] w-[35px] h-[4px] opacity-20 focus:outline-none;
+        &:not(:last-child) {
+          @apply mr-[9px];
+        }
+        &-active {
+          @apply bg-grey opacity-100;
+        }
+      }
+      .swiper-button {
+        @apply hidden w-[58px] h-[48px] desktop:block ;
+        &::after { @apply hidden;  }
+      }
+      .swiper-button-prev {
+        @apply left-[50px];
+      }
+      .swiper-button-next {
+        @apply right-[50px];
+      }
+    }
+    &-item {
+      width: 100vw;
+      @apply relative rounded-[12px] overflow-hidden w-[340px] aspect-video;
+      @apply desktop:w-[960px];
+      &_image, &_youtube {
+        @apply w-full h-full bg-white;
+        img {
+          @apply w-full h-full object-contain;
+        }
+        iframe {
+          @apply w-full h-full object-contain;
+        }
+      }
+      &::after {
+        content: "";
+        @apply absolute w-full h-full top-0 left-0;
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+      }
+      &-control-panel {
+        @apply hidden absolute right-0 top-0;
+      }
+    }
+
+  }
+}

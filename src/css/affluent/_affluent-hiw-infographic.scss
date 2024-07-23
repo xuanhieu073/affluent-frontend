@@ -10,6 +10,12 @@
           @apply w-full h-full object-cover rounded-2xl;
         }
       }
+      .swiper-slide-next {
+        @apply mobile:pl-8;
+      }
+      .swiper-slide-prev {
+        @apply mobile:pr-8;
+      }
       .swiper-pagination {
         @apply static flex w-full justify-center gap-x-3 mt-[30px] mobile:mt-[52px];
         .swiper-pagination-bullet {
@@ -19,6 +25,17 @@
           @apply bg-sl-affluent-beige-100;
         }
       }
+      .swiper-slide-active {
+        .sl-card-media-carousel-item-control-panel {
+          @apply block w-auto;
+          .action-icon {
+            @apply cursor-pointer;
+          }
+        }
+      }
+    }
+    &_item {
+      @apply w-full;
     }
   }
 }

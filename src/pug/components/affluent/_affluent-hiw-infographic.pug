@@ -5,21 +5,42 @@ mixin affluent-hiw-infographic-header(header, subheader, ctatext)
       .affluent-standfirst_subheader !{subheader}
     if ctatext
       .affluent-standfirst_cta
-        a.affluent-button_primary=ctatext 
+        a.affluent-button_primary=ctatext
+
+mixin affluent-hiw-infographic-item 
+  .affluent-hiw-infographic_item(
+    x-data=`{
+      source: '',
+      mobileSrc: '',
+      mobileSrc: ''
+    }`,
+    x-init=`
+      desktopSrc = $refs.desktop.getAttribute('lazy-src') || $refs.desktop.getAttribute('src');
+      mobileSrc = $refs.mobile.getAttribute('lazy-src') || $refs.desktop.getAttribute('src');
+      source = window.matchMedia("(min-width: 768px)").matches ? desktopSrc : mobileSrc;
+    `
+    @resize.window="source = window.matchMedia('(min-width: 768px)').matches ? desktopSrc : mobileSrc;"
+  )
+    img(class="mobile:hidden" lazy-src=path+"/assets/images/affluent/affluent-hero-iul-small.png", alt="hiw-infographic" x-ref="mobile")
+    img(class="hidden mobile:block" lazy-src=path+"/assets/images/affluent/affluent-hero-iul.png", alt="hiw-infographic" x-ref="desktop")
+    .sl-card-media-carousel-item-control-panel 
+      +icon(path+"assets/icons/sl-icon-expand-rounded.svg")(@click="$dispatch('open-modal', { id: 'fullscreenImage', data: { source } })")
+      +link(download="Picture", :href="source")
+        +icon(path+"assets/icons/sl-icon-download-rounded.svg")
 
 mixin affluent-hiw-infographic 
   +affluent-hiw-infographic-header("<p><b>Key</b> features</p>", "<p>Grow your financial legacy with a strategic blend of life insurance and potential high-growth investments</p>")
   +affluent-spacer(32, 40)
-  .affluent-hiw-infographic_container(x-data="affluent_hiwinfographic")
+  .affluent-hiw-infographic_container(x-data="affluent_hiwinfographic"
+    data-back-button = "http://localhost:8080/clientlib-site//assets/icons/affluent/sl-icon-arrow-left-rounded-black.svg",
+    data-next-button = "http://localhost:8080/clientlib-site//assets/icons/affluent/sl-icon-arrow-right-rounded-black.svg"
+  )
     .swiper(x-ref="swiper")
       .swiper-wrapper
         .swiper-slide 
-            img(class="mobile:hidden" lazy-src=path+"/assets/images/affluent/affluent-hero-iul.png", alt="hiw-infographic")
-            img(class="hidden mobile:block" lazy-src=path+"/assets/images/affluent/affluent-hero-iul.png", alt="hiw-infographic")
+          +affluent-hiw-infographic-item
         .swiper-slide 
-            img(class="mobile:hidden" lazy-src=path+"/assets/images/affluent/affluent-hero.png", alt="hiw-infographic")
-            img(class="hidden mobile:block" lazy-src=path+"/assets/images/affluent/affluent-hero.png", alt="hiw-infographic")
+          +affluent-hiw-infographic-item
         .swiper-slide 
-            img(class="mobile:hidden" lazy-src=path+"/assets/images/affluent/affluent-hero-small.png", alt="hiw-infographic")
-            img(class="hidden mobile:block" lazy-src=path+"/assets/images/affluent/affluent-hero-small.png", alt="hiw-infographic")
+          +affluent-hiw-infographic-item
       .swiper-pagination(x-ref="pagination")

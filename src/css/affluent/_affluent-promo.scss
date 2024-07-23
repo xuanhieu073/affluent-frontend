@@ -7,7 +7,8 @@
       &.image-left {
         .affluent-promo_title {
           @apply items-end;
-          &-text, &-sub {
+          &-text,
+          &-sub {
             @apply text-right;
           }
         }
@@ -18,7 +19,8 @@
       &.image-right {
         .affluent-promo_title {
           @apply items-start;
-          &-text, &-sub {
+          &-text,
+          &-sub {
             @apply text-left;
           }
         }
@@ -43,7 +45,7 @@
       }
     }
     &_image {
-      @apply tablet:absolute w-[min(100vw,_951px)];
+      @apply mobile:absolute w-[min(100vw,_951px)];
     }
     &_title {
       @apply z-[1] w-full flex flex-col gap-4 mobile:gap-6 pt-8 mobile:py-12;
