@@ -1,0 +1,17 @@
+mixin main-main-button(name, index, href, newTab)
+    .sl-main-menu-link.group(x-ref=`menu${index+1}`, data-link=href, data-newTab=newTab @mouseover=`hoverMenu(${index}, $refs.mainMenu${index+1}, $refs.menu${index+1})`, @click='onHrefLinkClick()')&attributes(attributes)
+    span.sl-inner(:class=`{'sl-main-menu-link-hover': menuOpen[${index}]}`)= name
+    //- span.sl-main-menu-hover-line(:class=`{'sl-main-menu-link-hover': menuOpen[${index}]}`)
+
+mixin menu-link(href='#', name)
+  a.sl-menu-link(href=href)&attributes(attributes)= name
+    .h-6.w-6.sl-chevron
+      img.relative.h-3(src= path + 'assets/icons/sl-icon-chevron.svg')
+
+mixin sub-menu-link(href='#', label)
+  a.sl-main-sub-menu-link(href=href, @click=`setCtaDataLayer('Header Navigation', $el.innerHTML, true)`, target="_self")&attributes(attributes)= label
+    block 
+
+mixin banner-search-mascot
+  .sl-banner-search-mascot
+    img.sl-banner-search-mascot-image(src= path +'assets/images/search-results-banner-mascot.png')
